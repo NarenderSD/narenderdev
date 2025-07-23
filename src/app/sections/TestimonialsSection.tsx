@@ -20,7 +20,7 @@ const testimonials = [
   {
     name: "Rahul Singh",
     role: "CTO, StartupX",
-    image: "/exp-self.png",
+    image: "/default_image.png",
     text: "You bring premium quality and futuristic thinking to every project. Your portfolio is a true inspiration!",
   },
   {

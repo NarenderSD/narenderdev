@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const logos = [
-  { src: "/exp-ipca.png", alt: "IPCA", name: "IPCA" },
-  { src: "/exp-branddaddy.png", alt: "BrandDaddy", name: "BrandDaddy" },
+  { src: "/default_image.png", alt: "IPCA", name: "IPCA" },
+  { src: "/default_image.png", alt: "BrandDaddy", name: "BrandDaddy" },
   { src: "/vercel.svg", alt: "Vercel", name: "Vercel" },
   { src: "/globe.svg", alt: "Global", name: "Global Clients" },
-  { src: "/project-yaarvichar.png", alt: "YaarVichar", name: "YaarVichar" },
+  { src: "/default_image.png", alt: "YaarVichar", name: "YaarVichar" },
 ];
 
 const SocialProofSection = () => (

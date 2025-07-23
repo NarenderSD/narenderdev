@@ -6,8 +6,8 @@ import { MdEmail } from "react-icons/md";
 
 const socialLinks = [
   { href: "https://github.com/NarenderSD", icon: <FaGithub /> },
-  { href: "https://linkedin.com/in/narendersinghdev", icon: <FaLinkedin /> },
-  { href: "mailto:narendersingh8515@gmail.com", icon: <MdEmail /> },
+  { href: "https://www.linkedin.com/in/narendersingh1", icon: <FaLinkedin /> },
+  { href: "mailto:narendersingh2028@gmail.com", icon: <MdEmail /> },
 ];
 
 const ContactSection = () => {

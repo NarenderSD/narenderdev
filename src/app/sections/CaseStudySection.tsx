@@ -8,7 +8,7 @@ const caseStudies = [
   {
     id: "yaar-vichar-case-study",
     title: "Yaar Vichar: Connecting Friends, One Post at a Time",
-    image: "/project-yaarvichar.png",
+    image: "/default_image.png",
     problem: "In a world of complex social media, I wanted to create a simple, intuitive platform for close-knit communities to share moments without the noise.",
     solution: "I built a full-stack MERN application with real-time chat, post sharing, and a clean UI. The focus was on performance and user experience, using technologies like Socket.IO for instant messaging.",
     stack: ["React", "Node.js", "MongoDB", "Express", "Socket.IO", "TailwindCSS"],
@@ -18,7 +18,7 @@ const caseStudies = [
   {
     id: "apna-blog-case-study",
     title: "Apna Blog: A Space for Every Voice",
-    image: "/project-blog.png",
+    image: "/default_image.png",
     problem: "Many blogging platforms are either too complex or too restrictive. I aimed to create a space where writers could easily publish their thoughts with a rich, modern editor.",
     solution: "A MERN stack blog with a powerful rich-text editor, user authentication, and a clean, readable design. SEO optimization was a key focus to ensure content is discoverable.",
     stack: ["React", "Node.js", "MongoDB", "Express", "JWT", "TailwindCSS"],

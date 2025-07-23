@@ -1,6 +1,5 @@
-import Image from "next/image";
 import HeroSection from "./sections/HeroSection";
-import AboutSection, { AchievementsSection } from "./sections/AboutSection";
+import AboutSection from "./sections/AboutSection";
 import SkillsSection from "./sections/SkillsSection";
 import EducationSection from "./sections/EducationSection";
 import ProjectsSection from "./sections/ProjectsSection";
@@ -9,13 +8,13 @@ import ProfilesSection from "./sections/ProfilesSection";
 import ContactSection from "./sections/ContactSection";
 import LiveCodeReviewSection from "./sections/LiveCodeReviewSection";
 import LiveWebPlaygroundSection from "./sections/LiveWebPlaygroundSection";
-import TestimonialsSection from "./sections/TestimonialsSection";
-import BlogSection from "./sections/BlogSection";
-import TimelineSection from "./sections/TimelineSection";
+// import TestimonialsSection from "./sections/TestimonialsSection";
+// import BlogSection from "./sections/BlogSection";
+// import TimelineSection from "./sections/TimelineSection";
 import ServicesSection from "./sections/ServicesSection";
 import AwardsSection from "./sections/AwardsSection";
 import CountersSection from "./sections/CountersSection";
-import SocialProofSection from "./sections/SocialProofSection";
+// import SocialProofSection from "./sections/SocialProofSection";
 import CaseStudySection from "./sections/CaseStudySection";
 import ResumeCard from "./sections/ResumeCard";
 
@@ -24,7 +23,6 @@ export default function Home() {
     <main className="min-h-screen w-full bg-gradient-to-b from-white to-blue-100 dark:from-gray-900 dark:to-blue-950">
       <HeroSection />
       <AboutSection />
-      <AchievementsSection />
       <EducationSection />
       <ProjectsSection />
       <ExperienceSection />
@@ -36,6 +34,7 @@ export default function Home() {
       <CountersSection />
       <CaseStudySection />
       <AwardsSection />
+      {/* Future sections - commented for now */}
       {/* <SocialProofSection /> */}
       {/* <TestimonialsSection /> */}
       {/* <TimelineSection /> */}

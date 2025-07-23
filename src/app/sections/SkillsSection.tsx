@@ -45,28 +45,30 @@ const item = {
 const SkillsSection = () => {
   return (
     <section id="skills" className="w-full py-24 px-4 flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-100 dark:from-gray-900 dark:to-blue-950">
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 dark:text-blue-200">Expertise & Tech Stack</h2>
-      <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-center">My toolkit blends the best of modern web development — from frontend frameworks and backend APIs to design systems and cloud deployments. I specialize in building interactive, scalable, and visually stunning digital experiences.</p>
-      <motion.div
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 w-full max-w-5xl px-4"
-      >
-        {skills.map((skill, idx) => (
-          <motion.div
-            key={skill.name}
-            variants={item}
-            transition={{ delay: 0.2 + idx * 0.07, duration: 0.7, type: "spring" }}
-            whileHover={{ scale: 1.12, rotate: -2 }}
-            className="flex flex-col items-center justify-center bg-white/80 dark:bg-gray-800/80 rounded-xl shadow-md p-4 transition-transform cursor-pointer hover:shadow-xl border border-blue-100 dark:border-blue-900"
-          >
-            <div className="text-4xl mb-2">{skill.icon}</div>
-            <div className="text-sm font-semibold text-gray-800 dark:text-gray-100 text-center">{skill.name}</div>
-          </motion.div>
-        ))}
-      </motion.div>
+      <div className="w-full max-w-4xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 dark:text-blue-200">Expertise & Tech Stack</h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-center">My toolkit blends the best of modern web development — from frontend frameworks and backend APIs to design systems and cloud deployments. I specialize in building interactive, scalable, and visually stunning digital experiences.</p>
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 w-full max-w-5xl px-4"
+        >
+          {skills.map((skill, idx) => (
+            <motion.div
+              key={skill.name}
+              variants={item}
+              transition={{ delay: 0.2 + idx * 0.07, duration: 0.7, type: "spring" }}
+              whileHover={{ scale: 1.12, rotate: -2 }}
+              className="flex flex-col items-center justify-center bg-white/80 dark:bg-gray-800/80 rounded-xl shadow-md p-4 transition-transform cursor-pointer hover:shadow-xl border border-blue-100 dark:border-blue-900"
+            >
+              <div className="text-4xl mb-2">{skill.icon}</div>
+              <div className="text-sm font-semibold text-gray-800 dark:text-gray-100 text-center">{skill.name}</div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 };

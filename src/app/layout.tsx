@@ -5,6 +5,8 @@ import Footer from "./sections/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import LoadingScreen from "./components/LoadingScreen";
+import ChatBot from "./components/ChatBot";
+import WhatsAppChat from "./components/WhatsAppChat";
 
 export const metadata: Metadata = {
   title: "Narender Singh | Portfolio",
@@ -45,6 +47,8 @@ export default function RootLayout({
         <Navbar />
         <div className="pt-4">{children}</div>
         <Footer />
+        <ChatBot />
+        <WhatsAppChat />
       </body>
     </html>
   );

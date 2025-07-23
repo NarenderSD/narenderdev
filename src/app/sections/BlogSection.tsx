@@ -8,7 +8,7 @@ const articles = [
   {
     title: "How I Cracked 200+ DSA Problems (and You Can Too!)",
     summary: "My journey from zero to hero in DSA, with tips, code, and mindset hacks for every level.",
-    image: "/project-blog.png",
+    image: "/default_image.png",
     tags: ["DSA", "Motivation", "Python"],
     date: "2024-07-01",
     link: "#",
@@ -16,7 +16,7 @@ const articles = [
   {
     title: "Building a Futuristic Portfolio with Next.js & AI",
     summary: "Step-by-step guide to creating a premium, animated, AI-powered portfolio using Next.js, Tailwind, and Gemini.",
-    image: "/project-yaarvichar.png",
+    image: "/default_image.png",
     tags: ["Web Dev", "Next.js", "AI"],
     date: "2024-06-20",
     link: "#",
