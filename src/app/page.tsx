@@ -1,5 +1,6 @@
 import HeroSection from "./sections/HeroSection";
 import AboutSection from "./sections/AboutSection";
+import AchievementsGallery from "./sections/AchievementsGallery";
 import SkillsSection from "./sections/SkillsSection";
 import EducationSection from "./sections/EducationSection";
 import ProjectsSection from "./sections/ProjectsSection";
@@ -23,6 +24,7 @@ export default function Home() {
     <main className="min-h-screen w-full bg-gradient-to-b from-white to-blue-100 dark:from-gray-900 dark:to-blue-950">
       <HeroSection />
       <AboutSection />
+      <AchievementsGallery />
       <EducationSection />
       <ProjectsSection />
       <ExperienceSection />
