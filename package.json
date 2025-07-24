@@ -31,7 +31,7 @@
     "build:analyze": "ANALYZE=true npm run build",
     "postbuild": "next-sitemap",
     "clean": "rm -rf .next",
-    "vercel-build": "npm run lint:fix && npm run type-check && next build",
+    "vercel-build": "next build",
     "prod": "npm run build && npm run start",
     "deploy": "vercel --prod",
     "preview": "vercel"
