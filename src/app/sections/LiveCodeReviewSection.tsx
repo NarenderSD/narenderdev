@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaPlay, FaRobot, FaLightbulb, FaCode, FaArrowRight, FaCopy, FaTrash } from "react-icons/fa";
+import { FaPlay, FaRobot, FaLightbulb, FaCode, FaCopy, FaTrash } from "react-icons/fa";
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";

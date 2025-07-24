@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";  
-import ErrorBoundary from "./components/ErrorBoundary";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import LoadingScreen from "./components/LoadingScreen";
 import ChatBot from "./components/ChatBot";
@@ -20,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" aria-label="Portfolio site for Narender Singh">
+    <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

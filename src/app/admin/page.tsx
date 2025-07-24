@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { FaPlus, FaEdit, FaTrash, FaEye, FaImage, FaSpinner, FaSave, FaTimes, FaSignOutAlt } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash, FaEye, FaSpinner, FaSave, FaTimes, FaSignOutAlt } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
@@ -103,7 +103,7 @@ const AdminPanel = () => {
       } else {
         alert(data.error || 'Login failed');
       }
-    } catch (error) {
+    } catch (_error) {
       alert('Login failed. Please try again.');
     } finally {
       setLoading(false);

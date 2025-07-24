@@ -84,7 +84,7 @@ const CaseStudySection = () => {
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <FaLightbulb className="text-yellow-400 text-2xl mt-1 flex-shrink-0" />
-                  <p className="text-gray-700 dark:text-gray-300"><strong className="text-gray-800 dark:text-gray-100">The "Why":</strong> {study.problem}</p>
+                  <p className="text-gray-700 dark:text-gray-300"><strong className="text-gray-800 dark:text-gray-100">The &quot;Why&quot;:</strong> {study.problem}</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <FaCheckCircle className="text-green-500 text-2xl mt-1 flex-shrink-0" />

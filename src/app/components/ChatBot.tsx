@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaRobot, FaPaperPlane, FaTimes, FaCode, FaLinkedin, FaWhatsapp, FaEnvelope, FaDownload, FaUser, FaBriefcase, FaGraduationCap } from "react-icons/fa";
+import { FaRobot, FaPaperPlane, FaTimes, FaLinkedin, FaWhatsapp, FaEnvelope, FaUser } from "react-icons/fa";
 
 const BOT_NAME = "Narender's AI Assistant";
 

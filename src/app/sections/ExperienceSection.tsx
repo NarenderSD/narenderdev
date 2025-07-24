@@ -2,8 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaGithub, FaGitlab, FaDocker, FaAws, FaPython, FaJs, FaReact, FaNodeJs, FaFigma, FaGoogle, FaMicrosoft, FaCode, FaCloud, FaRobot } from "react-icons/fa";
-import { SiVercel, SiOpenai, SiVsco, SiTypescript, SiNextdotjs, SiMongodb, SiFirebase, SiDjango, SiAmazon, SiNotion, SiSlack, SiJupyter, SiKaggle, SiCodesandbox, SiGithubcopilot } from "react-icons/si";
+import { FaGithub, FaGitlab, FaDocker, FaPython, FaReact, FaNodeJs, FaFigma, FaGoogle, FaCloud, FaRobot } from "react-icons/fa";
+import { SiOpenai, SiVsco, SiTypescript, SiNextdotjs, SiMongodb, SiFirebase, SiDjango, SiAmazon, SiNotion, SiSlack, SiJupyter, SiKaggle, SiCodesandbox, SiGithubcopilot } from "react-icons/si";
 
 // Sample experience data (update as needed)
 const experiences = [

@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ text: FALLBACK_FEEDBACK[language], model: "fallback" });
     }
     return NextResponse.json({ error: "No usable response from Gemini. Code review is not supported for this model. Try code generation or a different prompt.", raw: lastError }, { status: 200 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return NextResponse.json({ error: "Failed to fetch from Gemini API.", details: String(err) }, { status: 500 });
   }
 } 
