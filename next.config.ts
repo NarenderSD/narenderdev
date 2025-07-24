@@ -4,16 +4,6 @@ const nextConfig: NextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
   
-  // Skip type checking during build for deployment
-  typescript: {
-    ignoreBuildErrors: process.env.SKIP_TYPE_CHECK === 'true',
-  },
-  
-  // Skip ESLint during build for deployment
-  eslint: {
-    ignoreDuringBuilds: process.env.SKIP_TYPE_CHECK === 'true',
-  },
-  
   // Optimize images
   images: {
     domains: ['res.cloudinary.com', 'images.unsplash.com'],

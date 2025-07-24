@@ -31,7 +31,7 @@
     "build:analyze": "ANALYZE=true npm run build",
     "postbuild": "next-sitemap",
     "clean": "rm -rf .next",
-    "vercel-build": "cross-env SKIP_TYPE_CHECK=true next build",
+    "vercel-build": "npm run lint:fix && npm run type-check && next build",
     "prod": "npm run build && npm run start",
     "deploy": "vercel --prod",
     "preview": "vercel"
@@ -47,6 +47,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.7.0",
+    "critters": "^0.0.23",
     "framer-motion": "^10.16.4",
     "jsonwebtoken": "^9.0.2",
     "lottie-react": "^2.4.1",

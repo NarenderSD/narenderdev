@@ -240,7 +240,7 @@ const ProjectsSection = () => {
         // Fallback to static projects
         setProjects(fallbackProjects);
       }
-    } catch (error) {
+    } catch (_error) {
       console.log('Using fallback projects');
       // Use fallback projects if API fails
       setProjects(fallbackProjects);

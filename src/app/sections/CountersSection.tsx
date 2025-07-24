@@ -65,7 +65,7 @@ const CountersSection = () => (
       My Numbers <span className="text-blue-500">/ Counters</span>
     </motion.h2>
     <div className="w-full max-w-6xl grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
-      {counters.map((c, i) => (
+      {counters.map((c, _i) => (
         <motion.div
           key={c.label}
           className="relative bg-white/20 dark:bg-blue-900/30 rounded-3xl shadow-xl p-8 flex flex-col items-center glassmorphism border border-blue-200 dark:border-blue-800 backdrop-blur-lg hover:scale-105 hover:shadow-2xl transition-all duration-300 group"

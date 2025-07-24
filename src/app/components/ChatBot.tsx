@@ -66,7 +66,7 @@ const ChatBot = () => {
         if (parsed.length > 1) {
           setMessages(parsed);
         }
-      } catch (e) {
+      } catch (_e) {
         console.log('Error loading chat history');
       }
     }
@@ -193,7 +193,7 @@ const ChatBot = () => {
         };
         
         setMessages((msgs) => [...msgs, botMessage]);
-      } catch (error) {
+      } catch (_error) {
         const errorMessage: ChatMessage = {
           from: "bot",
           text: "Sorry, I'm having a technical moment! 🤖 But I can still help you connect with Narender directly:\n\n📧 Email: narender@example.com\n💼 LinkedIn: /in/narender-singh\n📱 WhatsApp: Available on request\n\nWhat would you like to know about his work? 😊",
@@ -223,15 +223,7 @@ const ChatBot = () => {
   return (
     <>
       {/* Floating Button with Developer Animation */}
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1, rotate: [0, 5, -5, 0] }}
-        transition={{ 
-          scale: { type: "spring", stiffness: 300, damping: 20 },
-          rotate: { duration: 2, repeat: Infinity, repeatType: "reverse" }
-        }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+      <div
         style={{ display: open ? "none" : "flex" }}
         className="fixed bottom-6 right-6 z-[1000]"
       >
@@ -252,7 +244,7 @@ const ChatBot = () => {
           {/* Pulse Effect */}
           <div className="absolute inset-0 bg-white/20 rounded-full animate-ping"></div>
         </button>
-      </motion.div>
+      </div>
 
       {/* Chat Window */}
       <AnimatePresence>

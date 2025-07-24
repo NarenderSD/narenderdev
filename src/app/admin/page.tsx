@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaEye, FaSpinner, FaSave, FaTimes, FaSignOutAlt } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 interface Project {
@@ -77,8 +77,8 @@ const AdminPanel = () => {
       if (data.success) {
         setIsAuthenticated(true);
       }
-    } catch (error) {
-      console.error('Auth check failed:', error);
+    } catch (_error) {
+      console.error('Auth check failed:', _error);
     } finally {
       setLoading(false);
     }
@@ -115,8 +115,8 @@ const AdminPanel = () => {
       await fetch('/api/admin/auth', { method: 'DELETE' });
       setIsAuthenticated(false);
       setProjects([]);
-    } catch (error) {
-      console.error('Logout failed:', error);
+    } catch (_error) {
+      console.error('Logout failed:', _error);
     }
   };
 
@@ -128,8 +128,8 @@ const AdminPanel = () => {
       if (data.success) {
         setProjects(data.projects);
       }
-    } catch (error) {
-      console.error('Failed to load projects:', error);
+    } catch (_error) {
+      console.error('Failed to load projects:', _error);
     }
   };
 
@@ -260,11 +260,7 @@ const AdminPanel = () => {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 w-full max-w-md"
-        >
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 w-full max-w-md">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Admin Panel</h1>
             <p className="text-gray-600 dark:text-gray-400">Portfolio Management System</p>
@@ -308,7 +304,7 @@ const AdminPanel = () => {
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
-        </motion.div>
+        </div>
       </div>
     );
   }
@@ -355,10 +351,8 @@ const AdminPanel = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <motion.div
+            <div
               key={project._id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
               className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-shadow duration-200"
             >
               {/* Project Image */}
@@ -422,7 +416,7 @@ const AdminPanel = () => {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
@@ -442,17 +436,11 @@ const AdminPanel = () => {
       {/* Modal for Add/Edit Project */}
       <AnimatePresence>
         {showModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={(e) => e.target === e.currentTarget && handleCloseModal()}
+            onClick={(e: React.MouseEvent) => e.target === e.currentTarget && handleCloseModal()}
           >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
+            <div
               className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
             >
               <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
@@ -659,8 +647,8 @@ const AdminPanel = () => {
                   </button>
                 </div>
               </form>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
       </AnimatePresence>
     </div>
