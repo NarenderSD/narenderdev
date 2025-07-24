@@ -1,8 +1,7 @@
 'use client';
 import React from "react";
-import { motion } from "framer-motion";
-import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaPython, FaAws, FaGitAlt, FaGithub, FaWordpress, FaBootstrap, FaLightbulb, FaRocket, FaStar } from "react-icons/fa";
-import { SiMongodb, SiExpress, SiTailwindcss, SiKotlin, SiHeroku, SiSass, SiTypescript, SiPostgresql, SiDigitalocean, SiFlutter, SiJquery, SiCplusplus, SiPhp, SiNextdotjs } from "react-icons/si";
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJs, FaAws, FaGitAlt, FaGithub, FaWordpress, FaLightbulb, FaRocket, FaStar } from "react-icons/fa";
+import { SiMongodb, SiExpress, SiTailwindcss, SiHeroku, SiTypescript, SiNextdotjs } from "react-icons/si";
 
 // Add or update skills here
 const skills = [
@@ -27,47 +26,36 @@ const skills = [
   { name: "SEO", icon: <FaStar className="text-yellow-400" /> },
 ];
 
-const container = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0 },
-};
-
 const SkillsSection = () => {
   return (
     <section id="skills" className="w-full py-24 px-4 flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-100 dark:from-gray-900 dark:to-blue-950">
       <div className="w-full max-w-4xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 dark:text-blue-200">Expertise & Tech Stack</h2>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-center">My toolkit blends the best of modern web development — from frontend frameworks and backend APIs to design systems and cloud deployments. I specialize in building interactive, scalable, and visually stunning digital experiences.</p>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 w-full max-w-5xl px-4"
-        >
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 w-full max-w-5xl px-4">
           {skills.map((skill, idx) => (
-            <motion.div
+            <div
               key={skill.name}
-              variants={item}
-              transition={{ delay: 0.2 + idx * 0.07, duration: 0.7, type: "spring" }}
-              whileHover={{ scale: 1.12, rotate: -2 }}
-              className="flex flex-col items-center justify-center bg-white/80 dark:bg-gray-800/80 rounded-xl shadow-md p-4 transition-transform cursor-pointer hover:shadow-xl border border-blue-100 dark:border-blue-900"
+              className="flex flex-col items-center justify-center glass-morphism rounded-xl shadow-md p-4 hover-lift cursor-pointer hover:shadow-2xl border border-blue-100 dark:border-blue-900 group relative overflow-hidden transform transition-all duration-300 hover:scale-110 hover:-translate-y-2"
+              style={{
+                animationDelay: `${0.2 + idx * 0.07}s`
+              }}
             >
-              <div className="text-4xl mb-2">{skill.icon}</div>
-              <div className="text-sm font-semibold text-gray-800 dark:text-gray-100 text-center">{skill.name}</div>
-            </motion.div>
+              {/* Sparkle effect on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute top-2 right-2 w-1 h-1 bg-yellow-400 rounded-full animate-ping"></div>
+                <div className="absolute bottom-2 left-2 w-1 h-1 bg-blue-400 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
+                <div className="absolute top-1/2 right-1 w-0.5 h-0.5 bg-purple-400 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+              </div>
+              
+              <div className="text-4xl mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">{skill.icon}</div>
+              <div className="text-sm font-semibold text-gray-800 dark:text-gray-100 text-center transition-colors duration-300 group-hover:text-orange-500">{skill.name}</div>
+              
+              {/* Glow effect */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

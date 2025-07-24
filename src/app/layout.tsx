@@ -1,12 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "./sections/Navbar";
-import Footer from "./sections/Footer";
+import Footer from "./sections/Footer";  
 import ErrorBoundary from "./components/ErrorBoundary";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import LoadingScreen from "./components/LoadingScreen";
 import ChatBot from "./components/ChatBot";
 import WhatsAppChat from "./components/WhatsAppChat";
+// import SmartNavigation from "./components/SmartNavigation";
 
 export const metadata: Metadata = {
   title: "Narender Singh | Portfolio",
@@ -45,6 +46,7 @@ export default function RootLayout({
           <ThemeSwitcher />
         </div>
         <Navbar />
+        {/* <SmartNavigation /> */}
         <div className="pt-4">{children}</div>
         <Footer />
         <ChatBot />

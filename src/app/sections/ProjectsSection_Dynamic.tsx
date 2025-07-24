@@ -1,27 +1,17 @@
 'use client';
 import React, { useState, useEffect, useRef } from "react";
 import { FaExternalLinkAlt, FaGithub, FaEye } from "react-icons/fa";
+import { SiReact, SiNextdotjs, SiMongodb, SiDjango, SiHtml5 } from "react-icons/si";
 import Image from "next/image";
-import { 
-  MobileIcon, 
-  DatabaseIcon, 
-  ReactIcon, 
-  NextIcon, 
-  DjangoIcon, 
-  HtmlIcon, 
-  AllProjectsIcon,
-  StarIcon,
-  RocketIcon
-} from "../components/AnimatedIcons";
 
 const categories = [
-  { label: "All", value: "all", icon: <AllProjectsIcon className="w-5 h-5 text-purple-500" /> },
-  { label: "MERN", value: "mern", icon: <DatabaseIcon className="w-5 h-5 text-green-500" /> },
-  { label: "React", value: "react", icon: <ReactIcon className="w-5 h-5 text-cyan-400" /> },
-  { label: "Next.js", value: "nextjs", icon: <NextIcon className="w-5 h-5 text-black dark:text-white" /> },
-  { label: "Django", value: "django", icon: <DjangoIcon className="w-5 h-5 text-green-600" /> },
-  { label: "Mobile", value: "mobile", icon: <MobileIcon className="w-5 h-5 text-blue-500" /> },
-  { label: "Basic Web", value: "basic", icon: <HtmlIcon className="w-5 h-5 text-orange-500" /> },
+  { label: "All", value: "all", icon: null },
+  { label: "MERN", value: "mern", icon: <SiMongodb className="text-green-500" /> },
+  { label: "React", value: "react", icon: <SiReact className="text-cyan-400" /> },
+  { label: "Next.js", value: "nextjs", icon: <SiNextdotjs className="text-black dark:text-white" /> },
+  { label: "Django", value: "django", icon: <SiDjango className="text-green-600" /> },
+  { label: "Mobile", value: "mobile", icon: <div className="text-blue-500">📱</div> },
+  { label: "Basic Web", value: "basic", icon: <SiHtml5 className="text-orange-500" /> },
 ];
 
 // Fallback projects for when database is not available
@@ -146,10 +136,7 @@ const ProjectCard = ({ project, viewCount, onLiveClick }: {
         {/* Featured badge */}
         {project.featured && (
           <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
-            <div className="flex items-center gap-1">
-              <StarIcon className="w-4 h-4 text-yellow-400" />
-              Featured
-            </div>
+            ⭐ Featured
           </div>
         )}
       
@@ -253,7 +240,7 @@ const ProjectsSection = () => {
         // Fallback to static projects
         setProjects(fallbackProjects);
       }
-    } catch {
+    } catch (error) {
       console.log('Using fallback projects');
       // Use fallback projects if API fails
       setProjects(fallbackProjects);
@@ -414,7 +401,7 @@ const ProjectsSection = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-red-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <span className="relative z-10 flex items-center gap-3">
-                <RocketIcon className="w-6 h-6 text-orange-500" />
+                <span className="text-xl">🚀</span>
                 Explore All Projects ({filteredProjects.length - maxToShow} more)
                 <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
               </span>

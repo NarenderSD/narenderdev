@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaRocket, FaCode, FaStar, FaArrowRight } from "react-icons/fa";
 import { SiReact, SiNextdotjs, SiNodedotjs, SiMongodb, SiTypescript, SiTailwindcss, SiJavascript, SiPython } from "react-icons/si";
 import Image from "next/image";
+import { HandIcon } from "../components/AnimatedIcons";
 
 const roles = [
   "Full Stack Developer",
@@ -70,7 +71,7 @@ const Premium3DLaptop = () => {
         transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
-      <div className="relative w-full max-w-2xl mx-auto">
+      <div className="relative w-full max-w-sm sm:max-w-lg lg:max-w-2xl mx-auto">
         {/* Laptop Glow Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-3xl filter blur-3xl scale-110 opacity-0 group-hover:opacity-100 transition-all duration-700" />
         
@@ -204,8 +205,9 @@ const HeroSection = () => {
 
   return (
     <section 
+      id="hero"
       ref={sectionRef}
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-blue-950 dark:to-indigo-950"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-blue-950 dark:to-indigo-950 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
       onMouseMove={handleMouseMove}
       style={{
         transform: `translateY(${scrollY * 0.05}px)`,
@@ -220,18 +222,49 @@ const HeroSection = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-orange-400/15 to-red-400/15 rounded-full filter blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
         
         {/* Floating Stars and Code Icons */}
-        {Array.from({ length: 30 }).map((_, i) => (
+        {[
+          { left: 15, top: 25, delay: 0.5, duration: 12, icon: 'star' },
+          { left: 85, top: 15, delay: 1.2, duration: 15, icon: 'code' },
+          { left: 25, top: 80, delay: 2.1, duration: 11, icon: 'star' },
+          { left: 70, top: 60, delay: 0.8, duration: 18, icon: 'code' },
+          { left: 45, top: 35, delay: 3.2, duration: 14, icon: 'star' },
+          { left: 90, top: 75, delay: 1.8, duration: 16, icon: 'code' },
+          { left: 10, top: 50, delay: 2.5, duration: 13, icon: 'star' },
+          { left: 65, top: 20, delay: 4.1, duration: 17, icon: 'code' },
+          { left: 35, top: 70, delay: 1.5, duration: 12, icon: 'star' },
+          { left: 80, top: 45, delay: 3.8, duration: 19, icon: 'code' },
+          { left: 55, top: 85, delay: 0.3, duration: 15, icon: 'star' },
+          { left: 20, top: 10, delay: 2.8, duration: 11, icon: 'code' },
+          { left: 75, top: 90, delay: 4.5, duration: 16, icon: 'star' },
+          { left: 40, top: 55, delay: 1.1, duration: 13, icon: 'code' },
+          { left: 95, top: 30, delay: 3.6, duration: 18, icon: 'star' },
+          { left: 30, top: 65, delay: 0.9, duration: 14, icon: 'code' },
+          { left: 85, top: 85, delay: 2.3, duration: 12, icon: 'star' },
+          { left: 5, top: 40, delay: 4.2, duration: 17, icon: 'code' },
+          { left: 60, top: 10, delay: 1.7, duration: 15, icon: 'star' },
+          { left: 25, top: 95, delay: 3.4, duration: 11, icon: 'code' },
+          { left: 90, top: 55, delay: 0.6, duration: 19, icon: 'star' },
+          { left: 15, top: 75, delay: 2.9, duration: 13, icon: 'code' },
+          { left: 70, top: 25, delay: 4.7, duration: 16, icon: 'star' },
+          { left: 45, top: 90, delay: 1.4, duration: 14, icon: 'code' },
+          { left: 95, top: 65, delay: 3.1, duration: 18, icon: 'star' },
+          { left: 10, top: 20, delay: 0.7, duration: 12, icon: 'code' },
+          { left: 65, top: 80, delay: 2.6, duration: 15, icon: 'star' },
+          { left: 35, top: 45, delay: 4.3, duration: 17, icon: 'code' },
+          { left: 80, top: 15, delay: 1.9, duration: 11, icon: 'star' },
+          { left: 50, top: 70, delay: 3.7, duration: 16, icon: 'code' }
+        ].map((item, i) => (
           <div
             key={i}
             className="absolute animate-float-random opacity-20"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${10 + Math.random() * 10}s`,
+              left: `${item.left}%`,
+              top: `${item.top}%`,
+              animationDelay: `${item.delay}s`,
+              animationDuration: `${item.duration}s`,
             }}
           >
-            {Math.random() > 0.5 ? (
+            {item.icon === 'star' ? (
               <FaStar className="text-orange-400 text-sm" />
             ) : (
               <FaCode className="text-blue-400 text-sm" />
@@ -260,24 +293,26 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center h-full py-12">
+      <div className="container-responsive relative z-10 w-full max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center h-full py-8 sm:py-12">
           
           {/* Left Side - Premium Text Content */}
-          <div className="flex flex-col justify-center space-y-8 text-center lg:text-left">
+          <div className="flex flex-col justify-center space-y-6 sm:space-y-8 text-center lg:text-left order-2 lg:order-1">
             
             {/* Greeting with Perfect Animation */}
             <div className="flex items-center gap-4 justify-center lg:justify-start opacity-0 animate-fade-in-up" 
                  style={{ animationDelay: '0.2s' }}>
-              <div className="text-4xl lg:text-5xl drop-shadow-lg animate-wave">👋</div>
-              <span className="text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 font-semibold">
+              <div className="drop-shadow-lg">
+                <HandIcon className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-orange-500" />
+              </div>
+              <span className="text-responsive-2xl text-gray-600 dark:text-gray-300 font-semibold">
                 Hello, I&apos;m
               </span>
             </div>
 
             {/* Premium Name with Gradient */}
             <div className="space-y-4">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight opacity-0 animate-fade-in-up"
+              <h1 className="text-responsive-4xl font-bold leading-tight opacity-0 animate-fade-in-up"
                   style={{ animationDelay: '0.4s' }}>
                 <span className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent drop-shadow-2xl animate-gradient">
                   Narender
@@ -367,9 +402,11 @@ const HeroSection = () => {
           </div>
 
           {/* Right Side - Premium 3D Laptop */}
-          <div className="flex justify-center lg:justify-end opacity-0 animate-slide-in-right"
+          <div className="flex justify-center lg:justify-end opacity-0 animate-slide-in-right order-1 lg:order-2"
                style={{ animationDelay: '0.5s' }}>
-            <Premium3DLaptop />
+            <div className="w-full max-w-md sm:max-w-lg lg:max-w-2xl">
+              <Premium3DLaptop />
+            </div>
           </div>
         </div>
       </div>

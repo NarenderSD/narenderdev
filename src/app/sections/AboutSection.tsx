@@ -2,11 +2,23 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { 
+  LightningIcon, 
+  TargetIcon, 
+  BookIcon, 
+  RocketIcon, 
+  BriefcaseIcon 
+} from "../components/AnimatedIcons";
 
 export default function AboutSection() {
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <section id="about" className="py-20 bg-gradient-to-br from-gray-50 via-orange-50 to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen relative overflow-hidden">{/* Background Elements with Glass Morphism */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-72 h-72 glass-morphism rounded-full opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 glass-morphism rounded-full opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 glass-morphism rounded-full opacity-25 animate-pulse" style={{animationDelay: '4s'}}></div>
+      </div>
       {/* CSS Animations */}
       <style jsx>{`
         @keyframes fadeInUp {
@@ -166,13 +178,17 @@ export default function AboutSection() {
               
               {/* 3D Floating Elements with Enhanced Animations */}
               <div className="absolute -top-8 -right-8 w-20 h-20 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl opacity-0 animate-scale-in delay-600 animate-float hover:scale-125 hover:rotate-12 transition-all duration-500 transform-gpu hover:shadow-orange-500/50">
-                <span className="text-white text-2xl">⚡</span>
+                <div className="text-white">
+                  <LightningIcon className="w-8 h-8 text-white" />
+                </div>
               </div>
               <div className="absolute -bottom-8 -left-8 w-18 h-18 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-2xl opacity-0 animate-scale-in delay-800 animate-float hover:scale-125 hover:rotate-12 transition-all duration-500 transform-gpu hover:shadow-blue-500/50" style={{ animationDelay: '1.5s' }}>
                 <span className="text-white text-xl">�</span>
               </div>
               <div className="absolute top-1/3 -left-6 w-16 h-16 bg-gradient-to-br from-green-500 via-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-xl opacity-0 animate-scale-in delay-1000 animate-float hover:scale-125 hover:rotate-12 transition-all duration-500 transform-gpu hover:shadow-green-500/50" style={{ animationDelay: '3s' }}>
-                <span className="text-white text-lg">🎯</span>
+                <div className="text-white">
+                  <TargetIcon className="w-6 h-6 text-white" />
+                </div>
               </div>
               <div className="absolute top-1/4 -right-4 w-14 h-14 bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 rounded-xl flex items-center justify-center shadow-lg opacity-0 animate-scale-in delay-1200 animate-float hover:scale-125 hover:rotate-12 transition-all duration-500 transform-gpu hover:shadow-yellow-500/50" style={{ animationDelay: '4s' }}>
                 <span className="text-white text-sm">�</span>
@@ -215,7 +231,9 @@ export default function AboutSection() {
                 <span className="font-semibold text-sm">15+ Projects</span>
               </div>
               <div className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
-                <span className="text-lg">📚</span>
+                <div className="text-orange-500">
+                  <BookIcon className="w-6 h-6 text-orange-500" />
+                </div>
                 <span className="font-semibold text-sm">2+ Years</span>
               </div>
               <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
@@ -223,7 +241,9 @@ export default function AboutSection() {
                 <span className="font-semibold text-sm">100% Dedication</span>
               </div>
               <div className="bg-gradient-to-r from-purple-500 to-violet-500 text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
-                <span className="text-lg">🚀</span>
+                <div className="text-blue-500">
+                  <RocketIcon className="w-6 h-6 text-blue-500" />
+                </div>
                 <span className="font-semibold text-sm">Growth Mindset</span>
               </div>
             </div>
@@ -242,7 +262,9 @@ export default function AboutSection() {
                 className="bg-gradient-to-r from-gray-100 to-white dark:from-gray-800 dark:to-gray-700 text-gray-900 dark:text-gray-100 px-10 py-5 rounded-full font-bold shadow-2xl border-2 border-gray-300 dark:border-gray-600 hover:shadow-gray-500/30 hover:scale-110 hover:-translate-y-2 hover:rotate-1 transition-all duration-500 flex items-center gap-3 transform-gpu"
               >
                 <span className="text-lg">View Projects</span>
-                <span className="text-2xl animate-bounce">💼</span>
+                <div className="text-gray-700 dark:text-gray-300">
+                  <BriefcaseIcon className="w-8 h-8" />
+                </div>
               </button>
             </div>
           </div>

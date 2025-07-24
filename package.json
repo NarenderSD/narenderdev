@@ -1,12 +1,39 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
+  "name": "narender-singh-portfolio",
+  "version": "2.0.0",
+  "description": "Premium portfolio website with admin panel, 3D animations, and dynamic content management",
   "private": true,
+  "author": {
+    "name": "Narender Singh",
+    "email": "narender.dev@example.com",
+    "url": "https://narender-portfolio.vercel.app"
+  },
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwindcss",
+    "mongodb",
+    "admin-panel",
+    "3d-animations",
+    "responsive-design",
+    "full-stack"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "build:analyze": "ANALYZE=true npm run build",
+    "postbuild": "next-sitemap",
+    "clean": "rm -rf .next",
+    "vercel-build": "npm run lint:fix && npm run type-check && next build",
+    "prod": "npm run build && npm run start",
+    "deploy": "vercel --prod",
+    "preview": "vercel"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -15,8 +42,14 @@
     "@monaco-editor/react": "^4.7.0",
     "@react-three/drei": "^9.86.7",
     "@react-three/fiber": "^9.2.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.7.0",
     "framer-motion": "^10.16.4",
+    "jsonwebtoken": "^9.0.2",
     "lottie-react": "^2.4.1",
+    "mongodb": "^6.18.0",
     "next": "15.4.2",
     "prismjs": "^1.30.0",
     "react": "^18.2.0",

@@ -37,8 +37,8 @@ const AnimatedCounter = ({ value }: { value: number }) => {
     let start = 0;
     const end = value;
     if (start === end) return;
-    let incrementTime = 1200 / end;
-    let timer = setInterval(() => {
+    const incrementTime = 1200 / end;
+    const timer = setInterval(() => {
       start += 1;
       setCount(start);
       if (start === end) clearInterval(timer);

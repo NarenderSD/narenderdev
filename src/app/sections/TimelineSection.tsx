@@ -1,7 +1,5 @@
-/*
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 
 const milestones = [
   {
@@ -11,14 +9,14 @@ const milestones = [
     icon: "🎓",
   },
   {
-    year: "2020",
+    year: "2020",  
     title: "First Internship @ BrandDaddy",
     desc: "Worked as a Web Developer Intern, learned real-world coding, teamwork, and project delivery.",
     icon: "💼",
   },
   {
     year: "2021",
-    title: "Cracked 200+ DSA Problems",
+    title: "Cracked 200+ DSA Problems", 
     desc: "Mastered DSA on LeetCode, Codeforces, and GFG. Built strong problem-solving skills.",
     icon: "🧠",
   },
@@ -38,24 +36,14 @@ const milestones = [
 
 const TimelineSection = () => (
   <section id="timeline" className="w-full py-24 px-4 flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-100 dark:from-gray-900 dark:to-blue-950">
-    <motion.h2
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7, type: "spring" }}
-      className="text-3xl md:text-4xl font-bold mb-8 text-blue-900 dark:text-blue-200 text-center drop-shadow-lg"
-    >
+    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-blue-900 dark:text-blue-200 text-center drop-shadow-lg">
       My Journey <span className="text-blue-500">/ Timeline</span>
-    </motion.h2>
+    </h2>
     <div className="w-full max-w-3xl flex flex-col gap-8 relative">
       <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-blue-200 dark:from-blue-700 dark:to-blue-900 rounded-full -translate-x-1/2 z-0" />
       {milestones.map((m, i) => (
-        <motion.div
+        <div
           key={m.year}
-          initial={{ opacity: 0, y: 60 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: i * 0.15, duration: 0.7, type: "spring" }}
           className={`relative z-10 flex ${i % 2 === 0 ? 'justify-start' : 'justify-end'} items-center w-full`}
         >
           <div className="w-1/2 flex flex-col items-center">
@@ -84,11 +72,10 @@ const TimelineSection = () => (
               </div>
             ) : null}
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   </section>
 );
 
-export default TimelineSection;
-*/ 
+export default TimelineSection; 

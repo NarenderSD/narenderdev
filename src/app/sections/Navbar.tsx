@@ -5,13 +5,13 @@ import { FaMoon, FaSun, FaChevronDown } from "react-icons/fa";
 import ResumeDownloadButton from "./ResumeDownloadButton"; // Assuming this component exists
 
 const navLinks = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
   {
     label: "Live Hub",
-    href: "#",
+    href: "#live-hub",
     children: [
       { label: "Web Playground", href: "#live-web-playground" },
       { label: "Code Review", href: "#live-code-review" },

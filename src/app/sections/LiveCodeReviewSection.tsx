@@ -26,9 +26,9 @@ const languageOptions = [
 const runCode = (lang, code) => {
   if (lang === "javascript") {
     try {
-      // eslint-disable-next-line no-eval
+       
       // Only for demo! Never use eval in production!
-      // eslint-disable-next-line no-new-func
+       
       const result = Function(`"use strict";${code}`)();
       return String(result ?? "(No output, check console.log)");
     } catch (e) {
