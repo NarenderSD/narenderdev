@@ -156,14 +156,14 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Main About Content - Side by Side Layout */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center mb-20">
+        {/* Main About Content - Mobile-First Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start mb-20">
           
-          {/* Left Side - Image */}
-          <div className="flex justify-center lg:justify-start opacity-0 animate-fade-left delay-300">
+          {/* Content First on Mobile, Image on Right for Desktop */}
+          <div className="flex justify-center lg:justify-end opacity-0 animate-fade-left delay-300 order-1 lg:order-2">
             <div className="relative group">
-              {/* Main Image Container - Larger Vertical Size */}
-              <div className="w-80 h-[500px] relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-orange-500/20">
+              {/* Main Image Container - Responsive Size */}
+              <div className="w-72 h-96 lg:w-80 lg:h-[500px] relative overflow-hidden rounded-3xl shadow-2xl transform hover:scale-110 hover:rotate-1 transition-all duration-700 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)] hover:shadow-orange-500/20">
                 <Image
                   src="/profile.png"
                   alt="Narender Singh"
@@ -196,19 +196,19 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Right Side - Content */}
-          <div className="space-y-8 opacity-0 animate-fade-right delay-500">
+          {/* Content Section - Shows First on Mobile */}
+          <div className="space-y-8 opacity-0 animate-fade-right delay-500 order-2 lg:order-1">
             
             {/* Introduction */}
             <div className="space-y-6">
-              <h3 className="text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
+              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
                 Hello! I&apos;m <span className="text-gradient animate-pulse">Narender Singh</span>
-                <span className="block text-2xl text-gray-600 dark:text-gray-400 font-normal mt-3">
+                <span className="block text-xl lg:text-2xl text-gray-600 dark:text-gray-400 font-normal mt-3">
                   Full Stack Developer & Creative Problem Solver
                 </span>
               </h3>
               
-              <div className="space-y-4 text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+              <div className="space-y-4 text-gray-600 dark:text-gray-400 text-base lg:text-lg leading-relaxed">
                 <p className="transform hover:scale-105 transition-all duration-300 hover:text-gray-800 dark:hover:text-gray-200">
                   A dedicated and enthusiastic <strong className="text-orange-500">Software Developer</strong> fresh out of college with a burning passion for creating 
                   innovative digital solutions that make a real difference.
