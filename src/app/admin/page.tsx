@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FaPlus, FaEdit, FaTrash, FaEye, FaSpinner, FaSave, FaTimes, FaSignOutAlt } from 'react-icons/fa';
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -56,6 +56,7 @@ const AdminPanel = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [totalViews, setTotalViews] = useState(0);
 
   // Check authentication on mount
   useEffect(() => {
@@ -66,6 +67,14 @@ const AdminPanel = () => {
   useEffect(() => {
     if (isAuthenticated) {
       loadProjects();
+      
+      // Set up real-time updates every 30 seconds
+      const interval = setInterval(() => {
+        loadProjects();
+        console.log('🔄 Admin: Projects and view counts refreshed');
+      }, 30000);
+
+      return () => clearInterval(interval);
     }
   }, [isAuthenticated]);
 
@@ -120,68 +129,104 @@ const AdminPanel = () => {
     }
   };
 
-  const loadProjects = async () => {
+  const loadViewCounts = useCallback(async () => {
+    try {
+      const response = await fetch('/api/views');
+      const data = await response.json();
+      
+      if (data.success) {
+        const total = data.views.reduce((sum: number, view: { count: number }) => sum + (view.count || 0), 0);
+        setTotalViews(total);
+      }
+    } catch (error) {
+      console.error('Failed to load view counts:', error);
+    }
+  }, []);
+
+  const loadProjects = useCallback(async () => {
     try {
       const response = await fetch('/api/admin/projects');
       const data = await response.json();
       
       if (data.success) {
         setProjects(data.projects);
+        
+        // Also load view counts
+        loadViewCounts();
       }
     } catch (_error) {
       console.error('Failed to load projects:', _error);
     }
-  };
-
-  const handleImageUpload = async (file: File) => {
-    setUploadingImage(true);
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-      const response = await fetch('/api/admin/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setFormData(prev => ({ 
-          ...prev, 
-          image: data.url,
-          imagePublicId: data.publicId 
-        }));
-      } else {
-        alert('Image upload failed');
-      }
-    } catch (error) {
-      alert('Image upload failed');
-    } finally {
-      setUploadingImage(false);
-    }
-  };
+  }, [loadViewCounts]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    console.log('Starting form submission...');
+    console.log('Current form data:', formData);
+    console.log('Image file selected:', imageFile ? imageFile.name : 'None');
 
-    // Upload image if selected
+    let finalFormData = { ...formData };
+
+    // Upload image if selected and wait for completion
     if (imageFile) {
-      await handleImageUpload(imageFile);
+      console.log('Uploading image first...');
+      try {
+        setUploadingImage(true);
+        console.log('Starting image upload for:', imageFile.name, 'Size:', imageFile.size);
+        
+        const formDataUpload = new FormData();
+        formDataUpload.append('file', imageFile);
+
+        const response = await fetch('/api/admin/upload', {
+          method: 'POST',
+          body: formDataUpload,
+        });
+
+        console.log('Upload response status:', response.status);
+        const uploadData = await response.json();
+        console.log('Upload response data:', uploadData);
+
+        if (uploadData.success) {
+          console.log('Image uploaded successfully:', uploadData.url);
+          finalFormData = {
+            ...finalFormData,
+            image: uploadData.url,
+            imagePublicId: uploadData.publicId
+          };
+          alert('Image uploaded successfully!');
+        } else {
+          console.error('Upload failed:', uploadData.error);
+          alert(`Image upload failed: ${uploadData.error || 'Unknown error'}`);
+          setSubmitting(false);
+          return;
+        }
+      } catch (error) {
+        console.error('Upload error:', error);
+        alert(`Image upload failed: ${error}`);
+        setSubmitting(false);
+        return;
+      } finally {
+        setUploadingImage(false);
+      }
     }
 
     try {
       const projectData = {
-        ...formData,
-        id: formData.id || formData.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+        ...finalFormData,
+        id: finalFormData.id || finalFormData.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
       };
+
+      console.log('Submitting project data with final image:', projectData);
 
       const url = '/api/admin/projects';
       const method = editingProject ? 'PUT' : 'POST';
       
       if (editingProject) {
         projectData._id = editingProject._id;
+        console.log('Editing existing project:', editingProject._id);
+      } else {
+        console.log('Creating new project');
       }
 
       const response = await fetch(url, {
@@ -190,13 +235,17 @@ const AdminPanel = () => {
         body: JSON.stringify(projectData),
       });
 
+      console.log('Project submission response status:', response.status);
       const data = await response.json();
+      console.log('Project submission response data:', data);
 
       if (data.success) {
+        console.log('Project saved successfully');
         await loadProjects();
         handleCloseModal();
         alert(editingProject ? 'Project updated successfully!' : 'Project added successfully!');
       } else {
+        console.error('Project save failed:', data.error);
         alert(data.error || 'Operation failed');
       }
     } catch (error) {
@@ -315,14 +364,35 @@ const AdminPanel = () => {
       <header className="bg-white dark:bg-gray-800 shadow-lg border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Portfolio Management</p>
+            <div className="flex items-center gap-8">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Portfolio Management</p>
+              </div>
+              
+              {/* Navigation */}
+              <nav className="flex items-center gap-6">
+                <a
+                  href="/admin"
+                  className="text-orange-600 dark:text-orange-400 font-medium px-3 py-2 rounded-lg bg-orange-50 dark:bg-orange-900/20"
+                >
+                  Projects
+                </a>
+                <a
+                  href="/admin/contacts"
+                  className="text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium px-3 py-2 rounded-lg hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors"
+                >
+                  Contact Messages
+                </a>
+              </nav>
             </div>
             
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-600 dark:text-gray-400">
                 {projects.length} Projects
+              </span>
+              <span className="text-sm text-blue-600 dark:text-blue-400 font-medium">
+                {totalViews.toLocaleString()} Total Views
               </span>
               <button
                 onClick={handleLogout}
@@ -358,10 +428,17 @@ const AdminPanel = () => {
               {/* Project Image */}
               <div className="relative h-48 bg-gray-100 dark:bg-gray-700">
                 <Image
-                  src={project.image}
+                  src={project.image || '/default_image.png'}
                   alt={project.title}
                   fill
                   className="object-cover"
+                  onError={(e) => {
+                    console.error('Image load error for project:', project.title, 'URL:', project.image);
+                    e.currentTarget.src = '/default_image.png';
+                  }}
+                  onLoad={() => {
+                    console.log('Image loaded successfully for project:', project.title, 'URL:', project.image);
+                  }}
                 />
                 {project.featured && (
                   <div className="absolute top-3 left-3 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
@@ -492,26 +569,57 @@ const AdminPanel = () => {
                     Project Image
                   </label>
                   <div className="space-y-4">
+                    {/* Current Image Preview */}
                     {formData.image && formData.image !== '/default_image.png' && (
-                      <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
+                      <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-600">
                         <Image
                           src={formData.image}
-                          alt="Project preview"
+                          alt="Current project image"
                           fill
-                          className="object-cover"
+                          className="object-cover rounded-lg"
+                          onError={(e) => {
+                            console.error('Form preview image load error:', formData.image);
+                            e.currentTarget.src = '/default_image.png';
+                          }}
+                          onLoad={() => {
+                            console.log('Form preview image loaded:', formData.image);
+                          }}
                         />
+                        <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
+                          Current Image
+                        </div>
                       </div>
                     )}
+                    
+                    {/* Selected File Preview */}
+                    {imageFile && (
+                      <div className="relative w-full h-48 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden border-2 border-dashed border-orange-300 dark:border-orange-600">
+                        <Image
+                          src={URL.createObjectURL(imageFile)}
+                          alt="Selected file preview"
+                          fill
+                          className="object-cover rounded-lg"
+                        />
+                        <div className="absolute top-2 left-2 bg-orange-500 text-white text-xs px-2 py-1 rounded">
+                          Selected: {imageFile.name}
+                        </div>
+                      </div>
+                    )}
+                    
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                      onChange={(e) => {
+                        const file = e.target.files?.[0] || null;
+                        console.log('File selected in form:', file ? `${file.name} (${file.size} bytes)` : 'None');
+                        setImageFile(file);
+                      }}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     />
                     {uploadingImage && (
-                      <div className="flex items-center gap-2 text-orange-500">
+                      <div className="flex items-center gap-2 text-orange-500 bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg">
                         <FaSpinner className="animate-spin" />
-                        Uploading image...
+                        <span>Uploading image to Cloudinary...</span>
                       </div>
                     )}
                   </div>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { FaExternalLinkAlt, FaGithub, FaEye } from "react-icons/fa";
 import Image from "next/image";
 import { 
@@ -30,7 +30,7 @@ const fallbackProjects = [
     _id: "1",
     id: "apna-blog",
     title: "Apna Blog",
-    image: "/default_image.png",
+    image: "/project-blog.png",
     description: "A modern, full-stack blogging platform with rich text editor, authentication, and responsive design. Built for creators who want seamless publishing experience with advanced features.",
     live: "https://apnablog.vercel.app/",
     github: "https://github.com/NarenderSD/ApnaBlog",
@@ -42,7 +42,7 @@ const fallbackProjects = [
     _id: "2",
     id: "yaar-vichar",
     title: "Yaar Vichar Social",
-    image: "/default_image.png",
+    image: "/project-yaarvichar.png",
     description: "Feature-rich social media platform with real-time chat, posts, notifications, and user interactions. Designed for high engagement and smooth user experience.",
     live: "https://yaarvichar.vercel.app/",
     github: "https://github.com/NarenderSD/YaarVichar",
@@ -53,14 +53,14 @@ const fallbackProjects = [
   {
     _id: "3",
     id: "dental-care",
-    title: "Narender Dental Care",
-    image: "/default_image.png",
-    description: "Premium clinic website with appointment booking, gallery, and modern UI. Focused on accessibility, SEO optimization, and conversion rate optimization.",
-    live: "https://narenderdental.vercel.app/",
-    github: "https://github.com/NarenderSD/NarenderDentalCare",
-    categories: ["basic"],
-    stack: ["HTML5", "CSS3", "JavaScript", "TailwindCSS", "AOS", "Swiper"],
-    featured: true,
+    title: "Dental Care Website",
+    image: "/project-dental.png",
+    description: "Professional dental clinic website with appointment booking, service showcase, and modern responsive design. Built for healthcare providers.",
+    live: "https://dentalcare.vercel.app/",
+    github: "https://github.com/NarenderSD/DentalCare",
+    categories: ["react", "nextjs"],
+    stack: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
+    featured: false,
   },
 ];
 
@@ -77,28 +77,27 @@ interface Project {
   featured: boolean;
 }
 
-// Function to get initial view count
-const getViewCount = (id: string): number => {
-  if (typeof window === 'undefined') return 0;
-  
-  const stored = localStorage.getItem(`project_view_${id}`);
-  if (stored) {
-    return parseInt(stored, 10);
+// Function to get initial view count from database
+const getViewCount = async (id: string): Promise<number> => {
+  try {
+    const response = await fetch('/api/views');
+    const data = await response.json();
+    
+    if (data.success) {
+      const projectView = data.views.find((view: { projectId: string; count: number }) => view.projectId === id);
+      return projectView?.count || 0;
+    }
+  } catch (error) {
+    console.error('Error fetching view count:', error);
   }
   
-  // Set initial realistic counts
-  const initialCounts: { [key: string]: number } = {
-    "apna-blog": 1247,
-    "yaar-vichar": 892,
-    "dental-care": 634,
-    "portfolio-website": 456,
-    "ecommerce-app": 328,
-    "task-manager": 189,
-  };
+  // Fallback to localStorage
+  if (typeof window !== 'undefined') {
+    const stored = localStorage.getItem(`project_view_${id}`);
+    return stored ? parseInt(stored, 10) : 0;
+  }
   
-  const initialCount = initialCounts[id] || Math.floor(Math.random() * 100) + 50;
-  localStorage.setItem(`project_view_${id}`, String(initialCount));
-  return initialCount;
+  return 0;
 };
 
 // Enhanced Counter component with better animation and formatting
@@ -156,18 +155,31 @@ const ProjectCard = ({ project, viewCount, onLiveClick }: {
         {/* Project Image */}
         <div className="relative h-52 overflow-hidden">
           <Image 
-            src={project.image} 
+            src={project.image || '/default_image.png'} 
             alt={project.title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
+            onError={(e) => {
+              console.error(`Image failed to load for project ${project.title}:`, project.image);
+              // Fallback to default image if the project image fails to load
+              const target = e.target as HTMLImageElement;
+              if (target.src !== '/default_image.png') {
+                target.src = '/default_image.png';
+              }
+            }}
+            onLoad={() => {
+              console.log(`Image loaded successfully for project ${project.title}:`, project.image);
+            }}
+            priority={project.featured}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           
           {/* View count overlay */}
-          <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full flex items-center gap-2 shadow-lg">
+          <div className="absolute top-3 right-3 bg-black/90 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-2 shadow-lg border border-white/10">
             <FaEye className="text-orange-400" />
             <AnimatedCounter count={viewCount} />
-            <span className="text-gray-300">views</span>
+            <span className="text-gray-200">{viewCount === 1 ? 'view' : 'views'}</span>
           </div>
 
           {/* Project title overlay on image */}
@@ -233,29 +245,73 @@ const ProjectsSection = () => {
   const [showAll, setShowAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
   
   // Show 3 projects per row, 1 row = 3 projects initially (focusing on main projects)
   const maxToShow = 3;
 
   useEffect(() => {
     loadProjects();
+    
+    // Set up automatic refresh every 30 seconds to get real-time updates
+    const interval = setInterval(() => {
+      loadProjects();
+      setLastRefresh(new Date());
+      console.log('🔄 Projects and view counts refreshed automatically');
+    }, 30000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const loadProjects = async () => {
     try {
+      setLoading(true);
+      console.log('Loading projects from API...');
+      
       // Try to fetch from database first
       const response = await fetch('/api/admin/projects');
       const data = await response.json();
       
+      console.log('API Response:', data);
+      
       if (data.success && data.projects && data.projects.length > 0) {
-        setProjects(data.projects);
+        // Process database projects to ensure images are properly handled
+        const processedProjects = data.projects.map((project: Project) => {
+          let imageUrl = project.image;
+          
+          // If the image is a Cloudinary URL or external URL, try to use it
+          // Otherwise use fallback images based on project title or default
+          if (!imageUrl || imageUrl === '/default_image.png') {
+            if (project.title.toLowerCase().includes('blog')) {
+              imageUrl = '/project-blog.png';
+            } else if (project.title.toLowerCase().includes('yaar') || project.title.toLowerCase().includes('social')) {
+              imageUrl = '/project-yaarvichar.png';
+            } else if (project.title.toLowerCase().includes('dental')) {
+              imageUrl = '/project-dental.png';
+            } else {
+              imageUrl = '/default_image.png';
+            }
+          }
+          
+          return {
+            ...project,
+            image: imageUrl
+          };
+        });
+        
+        console.log('Processed projects:', processedProjects);
+        setProjects(processedProjects);
+        console.log('Loaded projects from database:', processedProjects.length);
       } else {
         // Fallback to static projects
+        console.log('Using fallback projects');
         setProjects(fallbackProjects);
+        console.log('Fallback projects loaded:', fallbackProjects.length);
       }
-    } catch {
-      console.log('Using fallback projects');
+    } catch (error) {
+      console.error('Error loading projects:', error);
       // Use fallback projects if API fails
+      console.log('Using fallback projects due to error');
       setProjects(fallbackProjects);
     } finally {
       setLoading(false);
@@ -263,22 +319,103 @@ const ProjectsSection = () => {
   };
 
   useEffect(() => {
-    const counts: { [key: string]: number } = {};
-    projects.forEach((project) => {
-      counts[project.id] = getViewCount(project.id);
-    });
-    setViewCounts(counts);
+    const loadViewCounts = async () => {
+      const counts: { [key: string]: number } = {};
+      for (const project of projects) {
+        counts[project.id] = await getViewCount(project.id);
+      }
+      setViewCounts(counts);
+    };
+
+    if (projects.length > 0) {
+      loadViewCounts();
+      
+      // Set up view counts refresh every 15 seconds for real-time updates
+      const viewCountInterval = setInterval(() => {
+        loadViewCounts();
+        console.log('📊 View counts refreshed from database');
+      }, 15000);
+
+      return () => clearInterval(viewCountInterval);
+    }
   }, [projects]);
 
-  const handleLiveClick = (id: string, url: string) => {
-    // Increment view count
-    const newCount = (viewCounts[id] || 0) + 1;
-    setViewCounts((prev) => ({ ...prev, [id]: newCount }));
-    localStorage.setItem(`project_view_${id}`, String(newCount));
+  const handleLiveClick = async (id: string, url: string) => {
+    try {
+      // Update view count in database
+      const response = await fetch('/api/views', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ projectId: id })
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        // Update local state with database count
+        setViewCounts((prev) => ({ ...prev, [id]: data.count }));
+        
+        // Also update localStorage as backup
+        localStorage.setItem(`project_view_${id}`, String(data.count));
+        
+        console.log(`✅ Project "${id}" view count updated: ${data.count} (Database + Local)`);
+      } else {
+        // Fallback to local increment if database fails
+        const currentCount = viewCounts[id] || 0;
+        const newCount = currentCount + 1;
+        setViewCounts((prev) => ({ ...prev, [id]: newCount }));
+        localStorage.setItem(`project_view_${id}`, String(newCount));
+        
+        console.log(`⚠️ Project "${id}" view count updated locally: ${newCount} (Database failed)`);
+      }
+    } catch (error) {
+      console.error('Error updating view count:', error);
+      
+      // Fallback to local increment
+      const currentCount = viewCounts[id] || 0;
+      const newCount = currentCount + 1;
+      setViewCounts((prev) => ({ ...prev, [id]: newCount }));
+      localStorage.setItem(`project_view_${id}`, String(newCount));
+    }
     
-    // Open project
-    window.open(url, '_blank');
+    // Open project after a short delay for better UX
+    setTimeout(() => {
+      window.open(url, '_blank');
+    }, 100);
   };
+
+  // Debug function to reset all view counts (can be called from console)
+  const resetViewCounts = useCallback(async () => {
+    try {
+      // Reset in database
+      await fetch('/api/views', { method: 'DELETE' });
+      
+      // Reset in localStorage
+      if (typeof window !== 'undefined') {
+        projects.forEach(project => {
+          localStorage.removeItem(`project_view_${project.id}`);
+        });
+      }
+      
+      // Reload view counts
+      const newCounts: { [key: string]: number } = {};
+      for (const project of projects) {
+        newCounts[project.id] = await getViewCount(project.id);
+      }
+      setViewCounts(newCounts);
+      console.log('All view counts reset to 0');
+    } catch (error) {
+      console.error('Error resetting view counts:', error);
+    }
+  }, [projects]);
+
+  // Make reset function available globally for debugging
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      (window as { resetProjectViewCounts?: () => void }).resetProjectViewCounts = resetViewCounts;
+      console.log('Debug: Use resetProjectViewCounts() in console to reset all view counts');
+    }
+  }, [projects, resetViewCounts]);
 
   // Filter projects based on category and search
   const filteredProjects = projects.filter((project) => {
@@ -311,9 +448,29 @@ const ProjectsSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">Projects</span>
-          </h2>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
+              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">Projects</span>
+            </h2>
+            <button
+              onClick={() => {
+                loadProjects();
+                setLastRefresh(new Date());
+              }}
+              className="ml-4 p-2 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl"
+              title="Refresh Projects"
+            >
+              <RocketIcon className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <span className="px-4 py-2 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full font-medium">
+              {projects.length} Projects Available
+            </span>
+            <span className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full font-medium">
+              Last Updated: {lastRefresh.toLocaleTimeString()}
+            </span>
+          </div>
           <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mb-6 rounded-full"></div>
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
             Explore my carefully crafted portfolio of <span className="text-orange-500 font-semibold">production-grade applications</span> and 
