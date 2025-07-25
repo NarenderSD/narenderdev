@@ -35,7 +35,7 @@
 
 ## 🌟 **Overview**
 
-A **premium, responsive portfolio website** built with cutting-edge technologies, featuring dynamic content management, stunning 3D animations, and professional UI/UX design. This project showcases modern web development practices with a focus on performance, accessibility, and user experience.
+A **premium, professional portfolio website** built with cutting-edge technologies, featuring dynamic content management, stunning 3D animations, and enterprise-grade UI/UX design. This project showcases modern full-stack development practices with a focus on performance, scalability, and exceptional user experience.
 
 </div>
 

@@ -339,11 +339,11 @@ const HeroSection = () => {
             {/* Premium Description */}
             <p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium opacity-0 animate-fade-in-up"
                style={{ animationDelay: '1s' }}>
-              Passionate about creating{" "}
+              Building{" "}
               <span className="text-orange-500 font-bold animate-pulse-scale">
-                exceptional digital experiences
+                scalable web applications
               </span>{" "}
-              through clean code, innovative solutions, and cutting-edge technologies.
+              with modern technologies. Specialized in MERN stack development, creating responsive user interfaces, and delivering production-ready solutions for businesses.
             </p>
 
             {/* Premium Social Links */}
@@ -370,16 +370,16 @@ const HeroSection = () => {
             </div>
 
             {/* Premium Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start opacity-0 animate-fade-in-up"
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start opacity-0 animate-fade-in-up"
                  style={{ animationDelay: '1.4s' }}>
               <a
-                href="#contact"
-                className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white font-bold rounded-2xl shadow-2xl overflow-hidden text-lg hover:scale-105 transition-all duration-500 animate-gradient"
+                href="#projects"
+                className="group relative px-6 py-3 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-white font-bold rounded-xl shadow-2xl overflow-hidden text-base hover:scale-105 transition-all duration-500 animate-gradient"
               >
-                <span className="relative z-10 flex items-center gap-3">
-                  <FaRocket className="text-lg animate-bounce-gentle" />
-                  Let&apos;s Create Something Amazing
-                  <FaArrowRight className="text-lg group-hover:translate-x-1 transition-transform duration-300" />
+                <span className="relative z-10 flex items-center gap-2">
+                  <FaRocket className="text-base animate-bounce-gentle" />
+                  View Projects
+                  <FaArrowRight className="text-base group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </a>
@@ -391,10 +391,10 @@ const HeroSection = () => {
                     resumeSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="group px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 font-bold rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-orange-500 transition-all duration-500 text-lg shadow-xl hover:scale-105"
+                className="group px-6 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 font-bold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-orange-500 transition-all duration-500 text-base shadow-xl hover:scale-105"
               >
-                <span className="flex items-center gap-3">
-                  <FaDownload className="text-lg group-hover:text-orange-500 transition-colors duration-300 animate-bounce-gentle" />
+                <span className="flex items-center gap-2">
+                  <FaDownload className="text-base group-hover:text-orange-500 transition-colors duration-300 animate-bounce-gentle" />
                   View Resume
                 </span>
               </button>

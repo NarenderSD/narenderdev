@@ -7,27 +7,27 @@ const services = [
   {
     icon: <FaCode className="text-3xl text-blue-500" />,
     title: "Full Stack Web Development",
-    desc: "End-to-end web solutions — from interactive UIs to scalable backends. I build robust, maintainable, and high-performance applications for startups and enterprises alike.",
+    desc: "Complete web application development using MERN stack, Next.js, and TypeScript. Building scalable, maintainable, and production-ready applications with modern development practices.",
   },
   {
     icon: <FaChalkboardTeacher className="text-3xl text-orange-500" />,
-    title: "UI/UX & Web Design",
-    desc: "Crafting beautiful, user-centric interfaces with a focus on accessibility, responsiveness, and modern design trends. Every pixel matters.",
+    title: "Frontend Development & UI/UX",
+    desc: "Creating responsive, interactive user interfaces with React, Next.js, and modern CSS frameworks. Focused on user experience, accessibility, and cross-browser compatibility.",
   },
   {
     icon: <FaRobot className="text-3xl text-purple-500" />,
-    title: "Modern Web Technologies",
-    desc: "Integrating the latest in web tech — animations, 3D, cloud, and more. I deliver future-proof solutions that stand out in the digital crowd.",
+    title: "Backend Development & APIs",
+    desc: "Developing robust server-side solutions using Node.js, Express.js, and MongoDB. Implementing RESTful APIs, authentication systems, and database optimization.",
   },
   {
     icon: <FaUserTie className="text-3xl text-green-500" />,
-    title: "Consulting & Strategy",
-    desc: "Helping businesses architect, optimize, and scale their digital products. From MVPs to enterprise systems, I bring clarity and results.",
+    title: "Technical Consulting & Code Review",
+    desc: "Providing technical guidance, code reviews, and architectural recommendations. Helping teams optimize their development processes and implement best practices.",
   },
   {
     icon: <FaLightbulb className="text-3xl text-yellow-500" />,
-    title: "Performance & SEO",
-    desc: "Optimizing for speed, discoverability, and conversion. I ensure your web presence is fast, visible, and impactful.",
+    title: "Performance Optimization & SEO",
+    desc: "Optimizing web applications for speed, performance, and search engine visibility. Implementing advanced techniques for better user experience and higher rankings.",
   },
 ];
 
@@ -45,7 +45,7 @@ const ServicesSection = () => (
       transition={{ duration: 0.7, type: "spring" }}
       className="text-3xl md:text-4xl font-bold mb-8 text-blue-900 dark:text-blue-200 text-center drop-shadow-lg"
     >
-      What I Offer <span className="text-blue-500">/ Services</span>
+      Professional Services <span className="text-blue-500">& Solutions</span>
     </motion.h2>
     <div className="w-full max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {services.map((s, i) => (

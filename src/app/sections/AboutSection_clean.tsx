@@ -49,7 +49,7 @@ export default function AboutSection() {
             <div className="relative">
               <div className="w-80 h-96 relative overflow-hidden rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300">
                 <Image
-                  src="/profile.jpg"
+                  src="/profile.png"
                   alt="Narender Singh - Software Developer"
                   fill
                   className="object-cover"

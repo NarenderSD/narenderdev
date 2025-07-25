@@ -17,7 +17,7 @@ const socialLinks = [
     color: "hover:text-blue-600"
   },
   { 
-    href: "mailto:narendersingh2028@gmail.com", 
+    href: "mailto:narendersdcs@gmail.com", 
     icon: <MdEmail />, 
     label: "Email",
     color: "hover:text-red-500"
@@ -120,8 +120,8 @@ const ContactSection = () => {
             Get in Touch
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Have a project in mind? Want to collaborate? Or just want to say hello? 
-            I&apos;d love to hear from you. Drop me a message and let&apos;s create something amazing together!
+            Ready to bring your ideas to life? Looking for a dedicated full-stack developer? 
+            Let&apos;s discuss your project requirements and explore how I can help you achieve your goals with cutting-edge web solutions.
           </p>
         </div>
 

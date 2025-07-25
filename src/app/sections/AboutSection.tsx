@@ -152,7 +152,7 @@ export default function AboutSection() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-blue-500 mx-auto mb-6"></div>
           <p className="text-gray-600 dark:text-gray-400 text-xl max-w-3xl mx-auto leading-relaxed">
-            A passionate and dedicated software developer ready to bring fresh perspectives and innovative solutions to your team
+            Passionate developer with expertise in modern web technologies, focused on creating efficient and user-friendly applications
           </p>
         </div>
 
@@ -215,16 +215,16 @@ export default function AboutSection() {
               
               <div className="space-y-4 text-gray-600 dark:text-gray-400 text-base lg:text-lg leading-relaxed text-center lg:text-left">
                 <p className="transform hover:scale-[1.02] transition-all duration-300 hover:text-gray-800 dark:hover:text-gray-200">
-                  A dedicated and enthusiastic <strong className="text-orange-500">Software Developer</strong> fresh out of college with a burning passion for creating 
-                  innovative digital solutions that make a real difference.
+                  I&apos;m a dedicated <strong className="text-orange-500">Full-Stack Developer</strong> with strong expertise in modern web technologies. 
+                  I enjoy building applications that solve real problems and create value for users and businesses.
                 </p>
                 <p className="transform hover:scale-[1.02] transition-all duration-300 hover:text-gray-800 dark:hover:text-gray-200">
-                  I specialize in <strong className="text-blue-500">full-stack web development</strong> and am always eager 
-                  to learn cutting-edge technologies, tackle complex challenges, and contribute meaningfully to dynamic teams.
+                  My experience includes working with <strong className="text-blue-500">React, Node.js, MongoDB, and Next.js</strong> to create 
+                  responsive, scalable applications. I focus on writing clean code and following best practices.
                 </p>
                 <p className="transform hover:scale-[1.02] transition-all duration-300 hover:text-gray-800 dark:hover:text-gray-200">
-                  With a strong foundation in modern web technologies and an unwavering commitment to writing clean, 
-                  efficient code, I&apos;m ready to bring fresh ideas and grow alongside your organization.
+                  Currently pursuing MCA and always learning new technologies. I&apos;m passionate about creating great user experiences 
+                  and contributing to meaningful projects that make a difference.
                 </p>
               </div>
             </div>
@@ -241,13 +241,13 @@ export default function AboutSection() {
                 <div className="text-orange-500">
                   <BookIcon className="w-6 h-6 text-orange-500" />
                 </div>
-                <span className="font-semibold text-sm">2+ Years</span>
+                <span className="font-semibold text-sm">2+ Years Learning</span>
               </div>
               <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
                 <div className="text-white">
                   <TargetIcon className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-semibold text-sm">100% Dedication</span>
+                <span className="font-semibold text-sm">Always Growing</span>
               </div>
               <div className="bg-gradient-to-r from-purple-500 to-violet-500 text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
                 <div className="text-blue-500">

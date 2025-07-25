@@ -6,22 +6,22 @@ import Image from "next/image";
 // Sample education data (update as needed)
 const education = [
   {
-    degree: "Master of Computer Applications",
+    degree: "Master of Computer Applications (MCA)",
     institute: "Gurugram University, Gurgaon, Haryana",
     year: "2023-2025 | Pursuing",
-    logo: "/default_image.png", // Replaced missing logo
+    logo: "/logo gurugram universtiy.jpg", // Updated to real logo
   },
   {
-    degree: "Bachelor Of Vocational Studies in Software Development",
+    degree: "Bachelor of Vocational Studies in Software Development",
     institute: "Aggarwal College Ballabgarh | MDU Rohtak, Haryana",
-    year: "2020-2023 | Completed",
-    logo: "/default_image.png", // Replaced missing logo
+    year: "2020-2023 | Completed with Distinction",
+    logo: "/MDU logo.png", // Updated to MDU logo
   },
   {
-    degree: "Bachelor Of Commerce (Honours)",
-    institute: "Delhi University",
+    degree: "Bachelor of Commerce (Honours)",
+    institute: "Delhi University, New Delhi",
     year: "2020-2023 | Completed",
-    logo: "/default_image.png",
+    logo: "/Du logo.png", // Updated to DU logo
   },
 ];
 
@@ -34,7 +34,7 @@ const EducationSection = () => {
   return (
     <section id="education" className="w-full py-24 px-4 flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-100 dark:from-gray-900 dark:to-blue-950">
       <div className="w-full max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 dark:text-blue-200">My Education</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 dark:text-blue-200">Educational Background</h2>
         <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
           {education.map((edu, i) => (
             <motion.div
@@ -44,7 +44,7 @@ const EducationSection = () => {
               viewport={{ once: true }}
               variants={cardVariants}
               transition={{ delay: 0.2 + i * 0.2, duration: 0.7, type: "spring" }}
-              className="flex items-center gap-6 bg-white/90 dark:bg-gray-800/90 rounded-xl shadow-lg p-6 border-l-8 border-orange-400 group relative overflow-hidden"
+              className="flex items-center gap-8 bg-white/95 dark:bg-gray-800/95 rounded-2xl shadow-xl p-8 border-l-8 border-orange-400 group relative overflow-hidden backdrop-blur-sm hover:shadow-2xl transition-all duration-500"
               style={{ perspective: 800 }}
               onMouseMove={e => {
                 const card = e.currentTarget;
@@ -62,17 +62,23 @@ const EducationSection = () => {
             >
               {/* Light/shine effect */}
               <div className="shine absolute inset-0 rounded-xl pointer-events-none z-10 transition-all duration-300" style={{mixBlendMode:'lighten', left:0, top:0}} />
-              <Image
-                src={edu.logo}
-                alt={edu.degree}
-                width={80}
-                height={80}
-                className="w-20 h-20 object-contain rounded-md border-2 border-orange-200 bg-white shadow"
-              />
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">{edu.degree}</h3>
-                <p className="text-gray-700 dark:text-gray-200 text-sm mb-1">{edu.institute}</p>
-                <p className="text-gray-500 dark:text-gray-400 text-xs">{edu.year}</p>
+              <div className="w-24 h-24 rounded-xl border-2 border-orange-300 bg-gradient-to-br from-white to-gray-50 shadow-lg p-3 flex items-center justify-center transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                <Image
+                  src={edu.logo}
+                  alt={edu.degree}
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-lg"
+                  onError={(e) => {
+                    // Fallback to default image if logo fails to load
+                    e.currentTarget.src = '/default_image.png';
+                  }}
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-orange-600 transition-colors duration-300">{edu.degree}</h3>
+                <p className="text-gray-700 dark:text-gray-200 text-lg mb-2 font-semibold">{edu.institute}</p>
+                <p className="text-orange-600 dark:text-orange-400 text-sm font-medium">{edu.year}</p>
               </div>
               <style jsx global>{`
                 .shine {

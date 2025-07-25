@@ -8,25 +8,25 @@ import { SiOpenai, SiVsco, SiTypescript, SiNextdotjs, SiMongodb, SiFirebase, SiD
 // Sample experience data (update as needed)
 const experiences = [
   {
-    role: "Self Employed",
-    company: "Full Stack Developer",
+    role: "Full Stack Developer",
+    company: "Freelance & Contract Work",
     duration: "Nov 2023 - Present",
-    description: "Working as a freelance full stack developer, building modern web applications and solutions.",
-    logo: "/default_image.png",
+    description: "Building scalable web applications using MERN stack, Next.js, and modern development practices. Delivering end-to-end solutions for clients across various industries.",
+    logo: "/profile.png", // Updated to profile image for self-employed
   },
   {
-    role: "Brand Daddy",
-    company: "App Developer | Internship",
+    role: "App Developer",
+    company: "Brand Daddy | Internship",
     duration: "Sep 2023 - Oct 2023",
-    description: "Developed mobile apps and contributed to UI/UX improvements during internship.",
-    logo: "/default_image.png",
+    description: "Developed mobile applications and enhanced user interface design. Collaborated with design team to implement responsive and user-friendly mobile solutions.",
+    logo: "/branddaddy logo.jpg", // Updated to real BrandDaddy logo
   },
   {
-    role: "IPCA GROUP",
-    company: "Web Developer | Internship",
+    role: "Web Developer",
+    company: "IPCA GROUP | Internship",
     duration: "July 2022 - April 2023",
-    description: "Worked on web development projects, focusing on frontend and backend integration.",
-    logo: "/default_image.png",
+    description: "Contributed to web development projects focusing on frontend and backend integration. Gained hands-on experience with modern web technologies and development workflows.",
+    logo: "/IPCA logo.png", // Updated to real IPCA logo
   },
 ];
 
@@ -109,7 +109,7 @@ const ExperienceSection = () => {
               viewport={{ once: true }}
               variants={cardVariants}
               transition={{ delay: 0.2 + i * 0.2, duration: 0.7, type: "spring" }}
-              className="flex items-center gap-6 bg-white/90 dark:bg-gray-800/90 rounded-xl shadow-lg p-6 border-l-8 border-orange-400 group relative overflow-hidden"
+              className="flex items-center gap-8 bg-white/95 dark:bg-gray-800/95 rounded-2xl shadow-xl p-8 border-l-8 border-orange-400 group relative overflow-hidden backdrop-blur-sm hover:shadow-2xl transition-all duration-500"
               style={{ perspective: 800 }}
               onMouseMove={e => {
                 const card = e.currentTarget;
@@ -127,18 +127,24 @@ const ExperienceSection = () => {
             >
               {/* Light/shine effect */}
               <div className="shine absolute inset-0 rounded-xl pointer-events-none z-10 transition-all duration-300" style={{mixBlendMode:'lighten', left:0, top:0}} />
-              <Image
-                src={exp.logo}
-                alt={exp.role}
-                width={80}
-                height={80}
-                className="w-20 h-20 object-contain rounded-md border-2 border-orange-200 bg-white shadow"
-              />
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">{exp.role}</h3>
-                <p className="text-gray-700 dark:text-gray-200 text-sm mb-1">{exp.company}</p>
-                <p className="text-gray-500 dark:text-gray-400 text-xs mb-1">{exp.duration}</p>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{exp.description}</p>
+              <div className="w-24 h-24 rounded-xl border-2 border-orange-300 bg-gradient-to-br from-white to-gray-50 shadow-lg p-3 flex items-center justify-center transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
+                <Image
+                  src={exp.logo}
+                  alt={exp.role}
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-lg"
+                  onError={(e) => {
+                    // Fallback to default image if logo fails to load
+                    e.currentTarget.src = '/default_image.png';
+                  }}
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-orange-600 transition-colors duration-300">{exp.role}</h3>
+                <p className="text-gray-700 dark:text-gray-200 text-lg mb-2 font-semibold">{exp.company}</p>
+                <p className="text-orange-600 dark:text-orange-400 text-sm mb-3 font-medium">{exp.duration}</p>
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">{exp.description}</p>
               </div>
               <style jsx global>{`
                 .shine {

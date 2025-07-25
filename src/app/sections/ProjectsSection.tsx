@@ -31,7 +31,7 @@ const fallbackProjects = [
     id: "apna-blog",
     title: "Apna Blog",
     image: "/project-blog.png",
-    description: "A modern, full-stack blogging platform with rich text editor, authentication, and responsive design. Built for creators who want seamless publishing experience with advanced features.",
+    description: "Production-ready blogging platform featuring rich text editor, user authentication, and SEO optimization. Includes admin dashboard, comment system, and responsive design for optimal user experience across all devices.",
     live: "https://apnablog.vercel.app/",
     github: "https://github.com/NarenderSD/ApnaBlog",
     categories: ["mern", "react"],
@@ -43,7 +43,7 @@ const fallbackProjects = [
     id: "yaar-vichar",
     title: "Yaar Vichar Social",
     image: "/project-yaarvichar.png",
-    description: "Feature-rich social media platform with real-time chat, posts, notifications, and user interactions. Designed for high engagement and smooth user experience.",
+    description: "Comprehensive social media platform with real-time messaging, post management, user profiles, and notification system. Features include live chat, image sharing, user authentication, and responsive design for seamless social interactions.",
     live: "https://yaarvichar.vercel.app/",
     github: "https://github.com/NarenderSD/YaarVichar",
     categories: ["mern", "react"],
@@ -55,7 +55,7 @@ const fallbackProjects = [
     id: "dental-care",
     title: "Dental Care Website",
     image: "/project-dental.png",
-    description: "Professional dental clinic website with appointment booking, service showcase, and modern responsive design. Built for healthcare providers.",
+    description: "Modern dental clinic website with online appointment booking system, service portfolio, and patient testimonials. Features responsive design, contact forms, and optimized performance for healthcare professionals.",
     live: "https://dentalcare.vercel.app/",
     github: "https://github.com/NarenderSD/DentalCare",
     categories: ["react", "nextjs"],
@@ -172,6 +172,8 @@ const ProjectCard = ({ project, viewCount, onLiveClick }: {
             }}
             priority={project.featured}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkbHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           

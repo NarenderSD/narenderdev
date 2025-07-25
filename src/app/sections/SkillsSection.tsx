@@ -30,8 +30,8 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="w-full py-24 px-4 flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-100 dark:from-gray-900 dark:to-blue-950">
       <div className="w-full max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 dark:text-blue-200">Expertise & Tech Stack</h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-center">My toolkit blends the best of modern web development — from frontend frameworks and backend APIs to design systems and cloud deployments. I specialize in building interactive, scalable, and visually stunning digital experiences.</p>
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-blue-900 dark:text-blue-200">Skills & Technologies</h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto text-center">My toolkit includes modern web development technologies that I use to build efficient, scalable, and user-friendly applications.</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 w-full max-w-5xl px-4">
           {skills.map((skill, idx) => (
             <div

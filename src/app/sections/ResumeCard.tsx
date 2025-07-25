@@ -138,10 +138,10 @@ const ResumeCard = () => {
                   My professional resume with complete work experience, skills, and achievements. 
                   Click below to view in full screen or download.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <div className="flex flex-wrap gap-3 mb-6 justify-center">
                   <button
                     onClick={() => setShowFallback(false)}
-                    className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center gap-2 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300 flex items-center gap-2 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 text-sm"
                   >
                     🔄 Retry Preview
                   </button>
@@ -149,7 +149,7 @@ const ResumeCard = () => {
                     href="/Narender Singh Resume.pdf" 
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full hover:from-orange-600 hover:to-red-600 transition-all duration-300 flex items-center gap-2 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-300 flex items-center gap-2 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 text-sm"
                   >
                     <FaExternalLinkAlt /> Open PDF
                   </a>
@@ -165,22 +165,22 @@ const ResumeCard = () => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center">
+        <div className="flex flex-wrap gap-3 w-full max-w-md justify-center">
           <a
             href="/Narender Singh Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 text-lg"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 hover:scale-105 text-base"
           >
-            <FaExternalLinkAlt className="text-xl" /> 
+            <FaExternalLinkAlt className="text-base" /> 
             View Fullscreen
           </a>
           <a
             href="/Narender Singh Resume.pdf"
             download
-            className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 text-lg"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 hover:scale-105 text-base"
           >
-            <FaDownload className="text-xl" /> 
+            <FaDownload className="text-base" /> 
             Download PDF
           </a>
         </div>
