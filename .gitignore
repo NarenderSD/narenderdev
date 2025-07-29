@@ -233,3 +233,27 @@ ehthumbs.db
 
 # Misc
 *.log
+
+# Documentation and setup files (keep only essential ones)
+ADMIN_SETUP.md
+DEPLOYMENT_GUIDE.md
+FINAL_STATUS.md
+IMAGES_REQUIRED.md
+PRODUCTION_READY.md
+RESPONSIVE_DESIGN.md
+VERCEL_ENV_SETUP.md
+VERCEL_LOGIN_FIX.md
+vercel-setup.md
+
+# Keep README.md (essential)
+# README.md should NOT be ignored
+
+# Backup component files
+*_backup.tsx
+*_Backup.tsx
+*_clean.tsx
+*_Clean.tsx
+*_new.tsx
+*_New.tsx
+*_fixed.tsx
+*_Fixed.tsx

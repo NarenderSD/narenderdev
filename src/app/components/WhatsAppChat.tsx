@@ -18,7 +18,7 @@ const WhatsAppChat = () => {
       }}
     >
       <a
-        href="https://wa.me/919999999999" // Replace with your WhatsApp number
+        href="https://wa.me/918595962615?text=Hello%20Narender,%20I%20found%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project%20opportunity"
         target="_blank"
         rel="noopener noreferrer"
         className="bg-green-500 hover:bg-green-600 text-white rounded-full shadow-2xl p-4 flex items-center justify-center text-2xl focus:outline-none transition-all duration-300 relative group"

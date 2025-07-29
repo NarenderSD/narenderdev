@@ -6,33 +6,33 @@ import { FaTrophy, FaMedal, FaCertificate, FaGithub, FaRobot } from "react-icons
 const awards = [
   {
     icon: <FaTrophy className="text-3xl text-yellow-500" />,
-    title: "Hackathon Winner",
-    desc: "1st Place, CodeSprint 2023",
-    tooltip: "Built a real-time AI-powered web app in 24 hours.",
+    title: "Haryana State NSS Award",
+    desc: "State Level Recognition 2023",
+    tooltip: "Awarded by Haryana Government for outstanding social service and community contribution through NSS activities.",
   },
   {
     icon: <FaMedal className="text-3xl text-orange-500" />,
-    title: "DSA Champion",
-    desc: "Top 1% on LeetCode & GFG",
-    tooltip: "Solved 200+ DSA problems, 5-star coder.",
+    title: "DSA Problem Solver",
+    desc: "450+ Problems Solved",
+    tooltip: "Solved 450+ Data Structures & Algorithms problems on LeetCode, GeeksforGeeks, and other platforms.",
   },
   {
     icon: <FaCertificate className="text-3xl text-blue-500" />,
-    title: "Certified Developer",
-    desc: "Meta Front-End Cert. 2024",
-    tooltip: "Certified by Meta for advanced web development.",
+    title: "Full Stack Developer",
+    desc: "MERN Stack Expert",
+    tooltip: "Proficient in MongoDB, Express.js, React.js, Node.js with multiple production projects.",
   },
   {
     icon: <FaGithub className="text-3xl text-black dark:text-white" />,
-    title: "Open Source Contributor",
-    desc: "10+ PRs merged",
-    tooltip: "Contributed to major open source projects.",
+    title: "Active GitHub Contributor",
+    desc: "25+ Public Repositories",
+    tooltip: "Maintained 25+ repositories with clean code, documentation, and regular commits.",
   },
   {
     icon: <FaRobot className="text-3xl text-purple-500" />,
-    title: "AI Innovator",
-    desc: "Built AI-powered tools",
-    tooltip: "Integrated OpenAI, Gemini, and ML in real projects.",
+    title: "AI Integration Specialist",
+    desc: "Modern Tech Stack",
+    tooltip: "Integrated AI tools like ChatGPT, Gemini in projects with Next.js, TypeScript, and modern frameworks.",
   },
 ];
 

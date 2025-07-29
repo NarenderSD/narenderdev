@@ -7,27 +7,27 @@ const counters = [
   {
     icon: <FaCalendarAlt className="text-3xl text-blue-500" />,
     label: "Years Experience",
-    value: 3,
+    value: 2,
   },
   {
     icon: <FaProjectDiagram className="text-3xl text-green-500" />,
     label: "Projects Completed",
-    value: 18,
+    value: 15,
   },
   {
     icon: <FaCode className="text-3xl text-orange-500" />,
     label: "DSA Problems Solved",
-    value: 220,
+    value: 450,
   },
   {
     icon: <FaUsers className="text-3xl text-purple-500" />,
-    label: "Happy Clients",
-    value: 7,
+    label: "GitHub Repositories",
+    value: 25,
   },
   {
     icon: <FaCoffee className="text-3xl text-yellow-500" />,
-    label: "Cups of Chai",
-    value: 999,
+    label: "Cups of Tea",
+    value: 1200,
   },
 ];
 
