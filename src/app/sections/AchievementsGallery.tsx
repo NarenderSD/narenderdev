@@ -10,18 +10,24 @@ export default function AchievementsGallery() {
     { src: '/achieve2.jpg', id: 'achieve2' },
     { src: '/achieve3.jpg', id: 'achieve3' },
     { src: '/achieve4.jpg', id: 'achieve4' },
-    { src: '/achieve5.jpg', id: 'achieve5' },
+    { src: '/achieve5.jpeg', id: 'achieve5' },
     { src: '/achieve6.jpg', id: 'achieve6' },
     { src: '/achieve7.jpg', id: 'achieve7' },
+    { src: '/achieve8.jpg', id: 'achieve8' },
+    { src: '/achieve9.jpg', id: 'achieve9' },
+    { src: '/achieve10.jpg', id: 'achieve10' },
     // Duplicate for seamless loop
     { src: '/achieve.jpg', id: 'achieve-2' },
     { src: '/achieve1.jpg', id: 'achieve1-2' },
     { src: '/achieve2.jpg', id: 'achieve2-2' },
     { src: '/achieve3.jpg', id: 'achieve3-2' },
     { src: '/achieve4.jpg', id: 'achieve4-2' },
-    { src: '/achieve5.jpg', id: 'achieve5-2' },
+    { src: '/achieve5.jpeg', id: 'achieve5-2' },
     { src: '/achieve6.jpg', id: 'achieve6-2' },
     { src: '/achieve7.jpg', id: 'achieve7-2' },
+    { src: '/achieve8.jpg', id: 'achieve8-2' },
+    { src: '/achieve9.jpg', id: 'achieve9-2' },
+    { src: '/achieve10.jpg', id: 'achieve10-2' },
   ];
 
   return (
