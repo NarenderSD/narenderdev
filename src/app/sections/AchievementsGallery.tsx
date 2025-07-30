@@ -39,7 +39,7 @@ export default function AchievementsGallery() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(calc(-400px * 11 - 12px * 10));
           }
         }
         
@@ -62,7 +62,7 @@ export default function AchievementsGallery() {
         }
         
         .scrolling-container {
-          animation: scrollRight 35s linear infinite;
+          animation: scrollRight 18s linear infinite;
         }
         
         .scrolling-container:hover {
