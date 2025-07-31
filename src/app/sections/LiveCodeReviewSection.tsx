@@ -23,7 +23,9 @@ const languageOptions = [
   { value: "java", label: "Java" },
 ];
 
-const runCode = (lang, code) => {
+type LanguageKey = "javascript" | "python" | "cpp" | "java";
+
+const runCode = (lang: LanguageKey, code: string): string => {
   if (lang === "javascript") {
     try {
        
@@ -57,8 +59,8 @@ const AI_CODE_EXPLANATION = {
 };
 
 const AICodeLabSection = () => {
-  const [language, setLanguage] = useState("javascript");
-  const [code, setCode] = useState(initialCode[language]);
+  const [language, setLanguage] = useState<LanguageKey>("javascript");
+  const [code, setCode] = useState(initialCode[language as LanguageKey]);
   const [output, setOutput] = useState("");
   const [aiFeedback, setAIFeedback] = useState("");
   const [aiExplanation, setAIExplanation] = useState("");
@@ -66,33 +68,113 @@ const AICodeLabSection = () => {
   const [aiPrompt, setAiPrompt] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
-    setCode(initialCode[e.target.value]);
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLang = e.target.value as LanguageKey;
+    setLanguage(newLang);
+    setCode(initialCode[newLang]);
     setOutput("");
     setAIFeedback("");
     setAIExplanation("");
   };
 
-  const handleRun = () => {
+  const handleRun = async () => {
     setIsRunning(true);
-    setTimeout(() => {
+    try {
+      // Run the code locally
+      const result = runCode(language, code);
+      setOutput(result);
+      
+      // Get AI code review from Gemini
+      const response = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          mode: 'review',
+          code: code,
+          language: language
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.text) {
+        setAIFeedback(data.text);
+        setAIExplanation(`✅ AI Analysis: ${data.text.substring(0, 200)}...`);
+      } else {
+        // Fallback to static feedback
+        setAIFeedback(AI_CODE_FEEDBACK[language as LanguageKey]);
+        setAIExplanation(AI_CODE_EXPLANATION[language as LanguageKey]);
+      }
+      
+    } catch (error) {
+      console.error('AI Review Error:', error);
       setOutput(runCode(language, code));
-      setAIFeedback(AI_CODE_FEEDBACK[language]);
-      setAIExplanation(AI_CODE_EXPLANATION[language]);
+      setAIFeedback(AI_CODE_FEEDBACK[language as LanguageKey]);
+      setAIExplanation(AI_CODE_EXPLANATION[language as LanguageKey]);
+    } finally {
       setIsRunning(false);
-    }, 800);
+    }
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
+    if (!aiPrompt.trim()) {
+      alert("Please describe what code you want to generate!");
+      return;
+    }
+
     setIsGenerating(true);
-    setTimeout(() => {
-      if (language === "javascript") setCode("function sum(a, b) { return a + b; }\nconsole.log(sum(2, 3));");
-      if (language === "python") setCode("def sum(a, b):\n    return a + b\n\nprint(sum(2, 3))");
-      if (language === "cpp") setCode("#include <iostream>\nusing namespace std;\n\nint sum(int a, int b) { return a + b; }\n\nint main() {\n    cout << sum(2, 3) << endl;\n    return 0;\n}");
-      if (language === "java") setCode("public class Main {\n  public static void main(String[] args) {\n    System.out.println(sum(2, 3));\n  }\n  static int sum(int a, int b) { return a + b; }\n}");
+    
+    try {
+      const response = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          mode: 'generate',
+          prompt: `Generate ${language} code for: ${aiPrompt}. Provide clean, working code with comments.`,
+          language: language
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.text) {
+        // Clean the generated code
+        const generatedCode = data.text.replace(/```\w*|```/g, '').trim();
+        setCode(generatedCode);
+        setAiPrompt("");
+      } else {
+        // Fallback examples
+        generateFallbackCode();
+      }
+      
+    } catch (error) {
+      console.error('Code Generation Error:', error);
+      generateFallbackCode();
+    } finally {
       setIsGenerating(false);
-    }, 1200);
+    }
+  };
+
+  const generateFallbackCode = () => {
+    const prompt = aiPrompt.toLowerCase();
+    if (language === "javascript") {
+      if (prompt.includes('function') || prompt.includes('calculator')) {
+        setCode("// Calculator function\nfunction calculate(a, b, operation) {\n  switch(operation) {\n    case '+': return a + b;\n    case '-': return a - b;\n    case '*': return a * b;\n    case '/': return b !== 0 ? a / b : 'Error: Division by zero';\n    default: return 'Invalid operation';\n  }\n}\n\nconsole.log(calculate(10, 5, '+'));");
+      } else {
+        setCode("function sum(a, b) { return a + b; }\nconsole.log(sum(2, 3));");
+      }
+    } else if (language === "python") {
+      if (prompt.includes('function') || prompt.includes('calculator')) {
+        setCode("# Calculator function\ndef calculate(a, b, operation):\n    if operation == '+':\n        return a + b\n    elif operation == '-':\n        return a - b\n    elif operation == '*':\n        return a * b\n    elif operation == '/':\n        return a / b if b != 0 else 'Error: Division by zero'\n    else:\n        return 'Invalid operation'\n\nprint(calculate(10, 5, '+'))");
+      } else {
+        setCode("def sum(a, b):\n    return a + b\n\nprint(sum(2, 3))");
+      }
+    }
+    setAiPrompt("");
   };
 
   const handleCopy = () => {
@@ -100,7 +182,7 @@ const AICodeLabSection = () => {
   };
 
   const handleClear = () => {
-    setCode(initialCode[language]);
+    setCode(initialCode[language as LanguageKey]);
     setOutput("");
     setAIFeedback("");
     setAIExplanation("");
