@@ -207,3 +207,101 @@ body {
     opacity: 0.2;
   }
 }
+
+/* Laptop Screen Animations */
+@keyframes type-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes continuous-typing {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+.animate-type-in {
+  animation: type-in 0.8s ease-out forwards;
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s infinite;
+}
+
+.animate-continuous-typing {
+  animation: continuous-typing 4s ease-in-out infinite;
+}
+
+/* Missing Animations for Tech Icons */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-random {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-15px) translateX(5px);
+  }
+  50% {
+    transform: translateY(-5px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-20px) translateX(8px);
+  }
+}
+
+.animate-orbit {
+  animation: orbit 20s linear infinite;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+.animate-float-random {
+  animation: float-random 4s ease-in-out infinite;
+}

@@ -37,6 +37,8 @@ const techStack = [
 const Premium3DLaptop = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
   const laptopRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -47,17 +49,135 @@ const Premium3DLaptop = () => {
     setMousePos({ x: x * 2, y: y * 2 });
   };
 
-  const codeLines = [
-    { text: "// Building the future, one line at a time", color: "text-gray-500", delay: 0 },
-    { text: "const developer = {", color: "text-blue-400", delay: 0.5 },
-    { text: '  name: "Narender Singh",', color: "text-orange-400", delay: 1 },
-    { text: '  role: "Full Stack Developer",', color: "text-orange-400", delay: 1.5 },
-    { text: '  passion: "Creating Amazing Experiences",', color: "text-orange-400", delay: 2 },
-    { text: '  skills: ["React", "Node.js", "AI/ML"],', color: "text-orange-400", delay: 2.5 },
-    { text: '  status: "Available for exciting projects"', color: "text-orange-400", delay: 3 },
-    { text: "};", color: "text-blue-400", delay: 3.5 },
-    { text: 'console.log("Let\'s build something amazing!");', color: "text-purple-400", delay: 4 },
-  ];
+  // Code snippets for continuous typing animation - 10-12 lines each
+  const codeSnippets = React.useMemo(() => [
+    [
+      "// Portfolio v2.0 - Building the Future",
+      "const developer = {",
+      '  name: "Narender Singh",',
+      '  role: "Full Stack Developer",',
+      '  skills: ["React", "Node.js", "MongoDB"],',
+      '  experience: "2+ Years Professional",',
+      '  passion: "Creating Amazing UX",',
+      '  location: "India",',
+      '  status: "Available for projects ✨"',
+      "};",
+      "",
+      'console.log("Let\'s build something amazing!");'
+    ],
+    [
+      "// Latest Project: AI-Powered Portfolio",
+      "import { useEffect, useState } from 'react';",
+      "import { motion } from 'framer-motion';",
+      "",
+      "const Portfolio = () => {",
+      "  const [projects, setProjects] = useState([]);",
+      "  const [skills] = useState(['MERN', 'AI/ML']);",
+      "  const [loading, setLoading] = useState(true);",
+      "",
+      "  useEffect(() => {",
+      "    fetchProjects().then(setProjects);",
+      "  }, []);",
+      "",
+      "  return <MagicUserExperience />;"
+    ],
+    [
+      "// MongoDB Atlas Integration & API Routes",
+      "const connectDB = async () => {",
+      "  try {",
+      '    const conn = await mongoose.connect(URI);',
+      '    console.log("MongoDB Connected ✅");',
+      "  } catch (error) {",
+      '    console.error("DB Connection Error:", error);',
+      "    process.exit(1);",
+      "  }",
+      "};",
+      "",
+      "// Real-time Project Views Counter",
+      "const updateViewCount = async (projectId) => {"
+    ],
+    [
+      "// Advanced React Hooks & State Management",
+      "import { useReducer, useCallback } from 'react';",
+      "",
+      "const useProjectManager = () => {",
+      "  const [state, dispatch] = useReducer(reducer);",
+      "  ",
+      "  const addProject = useCallback((project) => {",
+      "    dispatch({ type: 'ADD_PROJECT', project });",
+      "  }, []);",
+      "",
+      "  const updateProject = useCallback((id, data) => {",
+      "    dispatch({ type: 'UPDATE', id, data });",
+      "  }, []);"
+    ]
+  ], []);
+
+  // Continuous typing effect
+  useEffect(() => {
+    const snippet = codeSnippets[currentLineIndex % codeSnippets.length];
+    let lineIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let currentLine = '';
+    let fullText = '';
+
+    const typeEffect = () => {
+      if (lineIndex < snippet.length) {
+        const line = snippet[lineIndex];
+        
+        if (!isDeleting && charIndex <= line.length) {
+          currentLine = line.slice(0, charIndex);
+          const lineNumber = String(lineIndex + 1).padStart(2, '0');
+          const lines = snippet.slice(0, lineIndex).map((l, i) => 
+            `${String(i + 1).padStart(2, '0')} ${l}`
+          );
+          if (currentLine) {
+            lines.push(`${lineNumber} ${currentLine}`);
+          }
+          fullText = lines.join('\n');
+          setCurrentText(fullText);
+          charIndex++;
+        } else if (!isDeleting) {
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(typeEffect, 500); // Pause between lines
+          return;
+        } else if (isDeleting && charIndex >= 0) {
+          currentLine = line.slice(0, charIndex);
+          const lineNumber = String(lineIndex + 1).padStart(2, '0');
+          const lines = snippet.slice(0, lineIndex).map((l, i) => 
+            `${String(i + 1).padStart(2, '0')} ${l}`
+          );
+          if (currentLine) {
+            lines.push(`${lineNumber} ${currentLine}`);
+          }
+          fullText = lines.join('\n');
+          setCurrentText(fullText);
+          charIndex--;
+        }
+
+        if (lineIndex >= snippet.length && !isDeleting) {
+          setTimeout(() => {
+            isDeleting = true;
+            lineIndex = snippet.length - 1;
+            charIndex = snippet[lineIndex].length;
+            typeEffect();
+          }, 2000); // Reduced wait time for faster transitions
+          return;
+        }
+
+        if (isDeleting && lineIndex < 0) {
+          setCurrentLineIndex(prev => (prev + 1) % codeSnippets.length);
+          return;
+        }
+
+        setTimeout(typeEffect, isDeleting ? 20 : 60); // Faster typing and deleting
+      }
+    };
+
+    setTimeout(typeEffect, 1000);
+  }, [currentLineIndex, codeSnippets]);
 
   return (
     <div 
@@ -71,94 +191,76 @@ const Premium3DLaptop = () => {
         transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       }}
     >
-      <div className="relative w-full max-w-sm sm:max-w-lg lg:max-w-2xl mx-auto">
+      <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto">
         {/* Laptop Glow Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-blue-500/20 rounded-3xl filter blur-3xl scale-110 opacity-0 group-hover:opacity-100 transition-all duration-700" />
         
         <Image
           src="/Laptop.png"
           alt="Premium Laptop"
-          width={800}
-          height={500}
+          width={1000}
+          height={650}
           className="w-full h-auto drop-shadow-2xl relative z-10 transition-all duration-500"
           priority
         />
         
-        {/* Advanced Screen Content */}
+        {/* EXPANDED Laptop Screen for 10-12 Lines - FINAL OPTIMIZATION */}
         <div className="absolute inset-0 flex items-center justify-center z-20">
-          <div className="w-[62%] h-[42%] bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-xl overflow-hidden shadow-inner border border-gray-700/50 mt-[6%]">
+          <div className="w-[76%] h-[54%] bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-lg overflow-hidden shadow-inner border border-gray-700/50 mt-[4%]">
             {/* Terminal Header */}
             <div className="flex items-center justify-between bg-gray-800 px-4 py-2 border-b border-gray-700">
               <div className="flex gap-2">
-                <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                <div className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse"></div>
+                <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
               </div>
-              <span className="text-gray-400 text-xs font-mono">portfolio.js</span>
+              <span className="text-gray-200 text-[0.68rem] font-mono font-semibold">📁 portfolio.js - Advanced Development</span>
             </div>
             
-            {/* Code Content */}
-            <div className="h-full p-4 font-mono text-xs overflow-hidden">
-              {codeLines.map((line, index) => (
-                <div
-                  key={index}
-                  className={`${line.color} mb-1 opacity-0 animate-type-in`}
-                  style={{
-                    animationDelay: `${line.delay}s`,
-                    animationDuration: '0.8s',
-                    animationFillMode: 'forwards',
-                  }}
-                >
-                  <span className="text-gray-600 mr-2">{String(index + 1).padStart(2, '0')}</span>
-                  {line.text}
-                </div>
-              ))}
-              
-              {/* Blinking Cursor */}
-              <span className="text-green-400 text-lg animate-cursor-blink">█</span>
+            {/* OPTIMIZED Code Content for Perfect 10-12 Lines Display */}
+            <div className="h-full p-2.5 font-mono text-[0.52rem] leading-[1.3] overflow-hidden bg-gray-900">
+              <pre className="text-green-400 whitespace-pre-wrap">
+                {currentText}
+                <span className="animate-cursor-blink text-green-400">█</span>
+              </pre>
             </div>
           </div>
         </div>
 
-        {/* Orbiting Tech Icons */}
-        <div className="absolute inset-0 pointer-events-none">
+        {/* FIXED Orbiting Tech Icons */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {techStack.map((tech, idx) => (
             <div
               key={idx}
-              className="absolute w-16 h-16 flex items-center justify-center animate-orbit"
+              className="absolute animate-orbit"
               style={{
                 left: '50%',
                 top: '50%',
-                transformOrigin: '0 0',
-                animationDuration: `${25 + idx * 2}s`,
-                animationDelay: `${idx * 0.3}s`,
+                animationDuration: `${20 + idx * 3}s`,
+                animationDelay: `${idx * 0.5}s`,
+                transformOrigin: `${150 + idx * 20}px 0px`,
               }}
             >
-              <div
-                className="flex items-center justify-center w-16 h-16 bg-white/10 dark:bg-gray-900/40 backdrop-blur-lg rounded-2xl border border-white/20 dark:border-gray-700/50 shadow-2xl hover:scale-125 hover:shadow-orange-500/50 transition-all duration-300 animate-float-gentle"
-                style={{
-                  transform: `translateX(${120 + idx * 15}px) translateY(-32px)`,
-                  animationDuration: '3s',
-                  animationDelay: `${idx * 0.5}s`,
-                }}
-              >
-                {tech.icon}
+              <div className="flex items-center justify-center w-12 h-12 bg-white/20 dark:bg-gray-800/60 backdrop-blur-md rounded-xl border border-white/30 dark:border-gray-600/50 shadow-lg hover:scale-110 transition-all duration-300 animate-float-gentle">
+                <div className="text-2xl">
+                  {tech.icon}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Floating Particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          {Array.from({ length: 8 }).map((_, i) => (
+        {/* FIXED Floating Particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {Array.from({ length: 6 }).map((_, i) => (
             <div
               key={i}
-              className="absolute w-4 h-4 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full opacity-60 animate-float-random"
+              className="absolute w-3 h-3 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full opacity-40 animate-float-random"
               style={{
-                left: `${15 + (i * 10)}%`,
-                top: `${25 + (i * 8)}%`,
-                animationDuration: `${6 + i * 2}s`,
-                animationDelay: `${i * 0.7}s`,
+                left: `${20 + (i * 15)}%`,
+                top: `${30 + (i * 10)}%`,
+                animationDuration: `${5 + i * 1.5}s`,
+                animationDelay: `${i * 0.8}s`,
               }}
             />
           ))}
