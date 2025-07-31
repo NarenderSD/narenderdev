@@ -2,10 +2,15 @@
 
 ![Portfolio Banner](https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&h=400&q=80)
 
-# 🚀 **Narender Singh - Premium Portfolio**
+# 🚀 **Narender Singh - Premium Portfolio v2.5**
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=24&pause=1000&color=FF6B35&center=true&vCenter=true&width=600&lines=Full+Stack+Developer+%F0%9F%92%BB;Premium+UI%2FUX+Designer+%F0%9F%8E%A8;MERN+Stack+Expert+%E2%9A%A1;Open+Source+Enthusiast+%F0%9F%8C%9F" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=26&pause=1000&color=FF6B35&center=true&vCenter=true&width=700&lines=Full+Stack+Developer+%F0%9F%92%BB;Premium+UI%2FUX+Designer+%F0%9F%8E%A8;MERN+Stack+Expert+%E2%9A%A1;2%2B+Years+Experience+%F0%9F%8C%9F;Built+by+Narender+Singh+%E2%9A%A1" alt="Typing SVG" />
+</p>
+
+<p align="center">
+  <strong>🎯 Professional Portfolio showcasing advanced web development skills and modern technologies</strong><br>
+  <em>✨ Featuring interactive animations, responsive design, and seamless user experience</em>
 </p>
 
 <p align="center">
@@ -13,21 +18,26 @@
   <a href="#-features">✨ Features</a> •
   <a href="#-tech-stack">🛠️ Tech Stack</a> •
   <a href="#-installation">📦 Installation</a> •
-  <a href="#-deployment">🚀 Deployment</a>
+  <a href="#-deployment">🚀 Deployment</a> •
+  <a href="#-developer">👨‍💻 Developer</a>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-15.4.2-black?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
   <img src="https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react&logoColor=white"/>
   <img src="https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TailwindCSS-3.4-cyan?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
   <img src="https://img.shields.io/badge/MongoDB-6.0-green?style=for-the-badge&logo=mongodb&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Deployed-Vercel-black?style=for-the-badge&logo=vercel"/>
+  <img src="https://img.shields.io/badge/Framer_Motion-11.0-purple?style=for-the-badge&logo=framer&logoColor=white"/>
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Deployed-Vercel-black?style=for-the-badge&logo=vercel"/>
   <img src="https://img.shields.io/github/license/NarenderSD/narenderdev?color=green&style=for-the-badge"/>
   <img src="https://img.shields.io/badge/PRs-Welcome-brightgreen.svg?style=for-the-badge"/>
   <img src="https://img.shields.io/github/stars/NarenderSD/narenderdev?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Built_by-Narender_Singh-orange?style=for-the-badge&logo=github"/>
+</p>
   <img src="https://img.shields.io/github/forks/NarenderSD/narenderdev?style=for-the-badge"/>
 </p>
 
@@ -439,14 +449,66 @@ This project is [MIT](LICENSE) licensed.
 
 ---
 
-## 📬 Contact & Socials
+## �‍💻 Developer
 
-<p align="left">
-  <a href="mailto:narender.singh@email.com"><img src="https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white"/></a>
-  <a href="https://www.linkedin.com/in/narender-singh/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white"/></a>
-  <a href="https://twitter.com/NarenderSD"><img src="https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white"/></a>
-  <a href="https://github.com/NarenderSD"><img src="https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white"/></a>
+<div align="center">
+
+### **Narender Singh**
+*Full Stack Developer • UI/UX Designer • Tech Enthusiast*
+
+<img src="https://github.com/NarenderSD.png" width="120" style="border-radius: 50%; border: 3px solid #FF6B35;"/>
+
+**🎯 Expertise:** MERN Stack, Next.js, TypeScript, MongoDB, React Native  
+**💼 Experience:** 2+ Years in Professional Web Development  
+**🌟 Specialization:** Modern Web Apps, Responsive Design, Interactive UX  
+**📍 Location:** India  
+**💡 Passion:** Creating innovative digital solutions that make a difference
+
+---
+
+### 🏆 **Professional Highlights**
+
+- ✅ **20+ Projects** delivered with modern tech stack
+- ✅ **2+ Years** of hands-on development experience  
+- ✅ **Expert** in React, Next.js, Node.js, MongoDB
+- ✅ **Specialized** in responsive design and user experience
+- ✅ **Open Source** contributor and tech community member
+
+### 🎨 **This Portfolio Features**
+
+- 🚀 **Next.js 15** with App Router
+- ⚡ **TypeScript** for type safety
+- 🎭 **Framer Motion** animations
+- 🎨 **TailwindCSS** styling
+- 📱 **Fully Responsive** design
+- 🌙 **Dark/Light** theme support
+- 📊 **Real-time** analytics
+- 💬 **Interactive** chat bot
+- 🔄 **Continuous** deployment
+
+</div>
+
+---
+
+## �📬 Contact & Socials
+
+<div align="center">
+
+**Let's Connect and Build Something Amazing Together! 🚀**
+
+<p align="center">
+  <a href="mailto:narendersingh2028@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+  <a href="https://www.linkedin.com/in/narendersingh1"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+  <a href="https://github.com/NarenderSD"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
+  <a href="https://www.instagram.com/buildbynarender"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/></a>
+  <a href="tel:+918595962615"><img src="https://img.shields.io/badge/Phone-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
 </p>
+
+**📧 Business Inquiries:** narendersingh2028@gmail.com  
+**📱 Direct Contact:** +91 8595962615  
+**🌐 Portfolio:** [narender-portfolio.vercel.app](https://narender-portfolio.vercel.app)
+
+</div>
 
 ---
 
