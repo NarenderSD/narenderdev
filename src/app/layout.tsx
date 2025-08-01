@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Navbar from "./sections/Navbar";
 import Footer from "./sections/Footer";  
-import ThemeSwitcher from "./components/ThemeSwitcher";
 import LoadingScreen from "./components/LoadingScreen";
 import ChatBot from "./components/ChatBot";
 import WhatsAppChat from "./components/WhatsAppChat";
@@ -38,12 +37,8 @@ export default function RootLayout({
         <meta name="twitter:description" content="Narender Singh - Full Stack Developer Portfolio. Projects, skills, experience, and contact." />
         <meta name="twitter:image" content="/profile.png" />
       </head>
-      <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100" aria-label="Main content">
+      <body className="bg-white text-gray-900 transition-colors duration-300" aria-label="Main content">
         <LoadingScreen />
-        {/* Theme Switcher fixed at top-right */}
-        <div className="fixed top-4 right-4 z-50">
-          <ThemeSwitcher />
-        </div>
         <Navbar />
         {/* <SmartNavigation /> */}
         <div className="pt-4">{children}</div>

@@ -66,10 +66,17 @@ const ChatBot = () => {
       try {
         const parsed = JSON.parse(savedChats);
         if (parsed.length > 1) {
-          setMessages(parsed);
+          // Convert timestamp strings back to Date objects
+          const messagesWithDates = parsed.map((msg: any) => ({
+            ...msg,
+            timestamp: new Date(msg.timestamp)
+          }));
+          setMessages(messagesWithDates);
         }
       } catch (error) {
-        console.log('Error loading chat history', error);
+        console.error('Error loading chat history:', error);
+        // Clear corrupted data
+        localStorage.removeItem('narender_chatbot_history');
       }
     }
   }, []);
@@ -306,7 +313,10 @@ Respond professionally as his assistant (keep it concise and helpful):`,
                         {message.text}
                       </div>
                       <div className="text-xs opacity-70 mt-1">
-                        {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        {message.timestamp instanceof Date 
+                          ? message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                          : new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                        }
                       </div>
                     </div>
                   </div>
